@@ -1,0 +1,31 @@
+#!/usr/bin/expect -f
+set password "Jz.5i5+PXAHtnlQFw2v8"
+set timeout -1
+
+puts ">>> Copying schema.prisma..."
+spawn scp -o StrictHostKeyChecking=no /Users/juanantoniomanzanedodelgado/.gemini/antigravity/playground/astral-photon/backend/prisma/schema.prisma root@82.29.172.172:/opt/smilestudio/backend/prisma/schema.prisma
+expect {
+    "password:" { send "$password\r"; exp_continue }
+    eof
+}
+
+puts ">>> Copying seed.ts..."
+spawn scp -o StrictHostKeyChecking=no /Users/juanantoniomanzanedodelgado/.gemini/antigravity/playground/astral-photon/backend/prisma/seed.ts root@82.29.172.172:/opt/smilestudio/backend/prisma/seed.ts
+expect {
+    "password:" { send "$password\r"; exp_continue }
+    eof
+}
+
+puts ">>> Running prisma db push on VPS..."
+spawn ssh -o StrictHostKeyChecking=no root@82.29.172.172 "docker exec smilestudio-api npx prisma db push --accept-data-loss"
+expect {
+    "password:" { send "$password\r"; exp_continue }
+    eof
+}
+
+puts ">>> Running prisma seed on VPS..."
+spawn ssh -o StrictHostKeyChecking=no root@82.29.172.172 "docker exec smilestudio-api npx tsx prisma/seed.ts"
+expect {
+    "password:" { send "$password\r"; exp_continue }
+    eof
+}

@@ -1,0 +1,95 @@
+# ─── SmileStudio Docker Compose (Production) ────────────
+# VPS Hostinger KVM 2: 8GB RAM, 2 vCPU, 100GB SSD
+
+services:
+  # ─── Backend API ─────────────────────────────────────
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: smilestudio-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgresql://smilestudio:${DB_PASSWORD}@postgres:5432/smilestudio?schema=public
+      - REDIS_URL=redis://redis:6379
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - uploads:/app/uploads
+    networks:
+      - smilestudio
+
+  # ─── PostgreSQL 16 ───────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: smilestudio-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: smilestudio
+      POSTGRES_USER: smilestudio
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "127.0.0.1:5432:5432"  # Only localhost, not exposed to internet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smilestudio"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - smilestudio
+
+  # ─── Redis 7 ─────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: smilestudio-redis
+    restart: unless-stopped
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redisdata:/data
+    ports:
+      - "127.0.0.1:6379:6379"  # Only localhost
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - smilestudio
+
+  # ─── Nginx Reverse Proxy ─────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: smilestudio-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - certbot-etc:/etc/letsencrypt:ro
+      - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - backend
+    networks:
+      - smilestudio
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:
+  certbot-etc:
+  certbot-var:
+
+networks:
+  smilestudio:
+    driver: bridge

@@ -3391,3 +3391,89 @@ model IaEscalationKeywords {
 
   @@map("ia_escalation_keywords")
 }
+
+// ─── GESTORÍA Y CONTABILIDAD (NATIVAS SMILESTUDIO) ────────
+
+model GestProveedores {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nombreFiscal     String   @map("nombre_fiscal")
+  cifNif           String?  @unique @map("cif_nif")
+  emailContacto    String?  @map("email_contacto")
+  categoriaDefecto String?  @map("categoria_defecto")
+  iban             String?
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  facturasEmail    GestFacturasEmail[]
+
+  @@map("gest_proveedores")
+}
+
+model GestFacturasEmail {
+  gmailMessageId   String   @id @map("gmail_message_id")
+  proveedorExtraido String? @map("proveedor_extraido")
+  proveedorId      String?  @map("proveedor_id") @db.Uuid
+  numeroFactura    String?  @map("numero_factura")
+  fechaFactura     DateTime? @map("fecha_factura") @db.Date
+  baseImponible    Decimal?  @map("base_imponible") @db.Decimal(10, 2)
+  ivaPct           Decimal?  @map("iva_pct") @db.Decimal(5, 2)
+  total            Decimal?  @map("total") @db.Decimal(10, 2)
+  archivoPdfUrl    String?   @map("archivo_pdf_url")
+  estado           String?   @default("pendiente")
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  proveedor        GestProveedores? @relation(fields: [proveedorId], references: [id])
+  movimientosBancarios GestMovimientosBancarios[]
+
+  @@map("gest_facturas_email")
+}
+
+model GestFacturasEmitidas {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  numeroSerie      String   @unique @map("numero_serie")
+  numPac           String?  @map("num_pac")
+  nifCliente       String   @map("nif_cliente")
+  nombreCliente    String   @map("nombre_cliente")
+  concepto         String
+  baseImponible    Decimal  @map("base_imponible") @db.Decimal(10, 2)
+  ivaPct           Decimal? @default(0) @map("iva_pct") @db.Decimal(5, 2)
+  total            Decimal  @map("total") @db.Decimal(10, 2)
+  fechaEmision     DateTime @map("fecha_emision") @db.Date
+  estadoPago       String?  @default("pendiente") @map("estado_pago")
+  verifactuEstado  String?  @default("no_enviado") @map("verifactu_estado")
+  verifactuHash    String?  @map("verifactu_hash")
+
+  movimientosBancarios GestMovimientosBancarios[]
+
+  @@map("gest_facturas_emitidas")
+}
+
+model GestMovimientosBancarios {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ibanCuenta       String   @map("iban_cuenta")
+  fechaOperacion   DateTime @map("fecha_operacion") @db.Date
+  conceptoBanco    String   @map("concepto_banco")
+  importe          Decimal  @db.Decimal(10, 2)
+  saldoPosterior   Decimal? @map("saldo_posterior") @db.Decimal(10, 2)
+  estadoConcil     String?  @default("abierto") @map("estado_concil")
+  fEmitidaId       String?  @map("f_emitida_id") @db.Uuid
+  fRecibidaId      String?  @map("f_recibida_id")
+
+  facturaEmitida   GestFacturasEmitidas? @relation(fields: [fEmitidaId], references: [id])
+  facturaRecibida  GestFacturasEmail?    @relation(fields: [fRecibidaId], references: [gmailMessageId])
+
+  @@map("gest_movimientos_bancarios")
+}
+
+model GestModelosFiscales {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  modelo           String
+  ejercicio        Int
+  periodo          String
+  estado           String?  @default("borrador")
+  fechaLimite      DateTime @map("fecha_limite") @db.Date
+  cuotaResultante  Decimal? @map("cuota_resultante") @db.Decimal(10, 2)
+  archivoJustif    String?  @map("archivo_justif")
+
+  @@unique([modelo, ejercicio, periodo])
+  @@map("gest_modelos_fiscales")
+}
