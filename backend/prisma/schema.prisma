@@ -3269,3 +3269,125 @@ model Widgets {
   Activo Boolean
   @@map("Widgets")
 }
+
+// ==========================================
+// MÓDULO IA & AUTOMATIZACIONES (SMILESTUDIO)
+// ==========================================
+
+model AutomationsConfig {
+  id              String   @id
+  name            String
+  description     String
+  trigger_event   String
+  channel         String
+  category        String
+  active          Boolean  @default(true)
+  executions      Int      @default(0)
+  success_rate    Decimal  @default(0) @db.Decimal(5, 2)
+  timing          String
+  example         String
+  config          Json     @default("{}")
+  created_at      DateTime @default(now())
+  updated_at      DateTime @default(now()) @updatedAt
+
+  @@map("automations_config")
+}
+
+model TemplatesConfig {
+  id          String   @id
+  name        String
+  type        String
+  category    String
+  content     String
+  vars        String[] @default([])
+  is_system   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
+
+  @@map("templates_config")
+}
+
+model FlowsConfig {
+  id          String   @id
+  name        String
+  trigger     String
+  color       String   @default("#0056b3")
+  active      Boolean  @default(true)
+  steps       Json     @default("[]")
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
+
+  @@map("flows_config")
+}
+
+model IaAgentConfig {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clinica_id        String   @unique
+  agent_name        String   @default("IA Dental")
+  tone              String   @default("empatica")
+  language          String   @default("es_peninsular")
+  greeting_message  String   @default("Hola, soy IA Dental. ¿En qué puedo ayudarte?")
+  knowledge_base    String[] @default([])
+  escalation_rules  Json     @default("[]")
+  groq_model        String   @default("llama-3.3-70b-versatile")
+  max_tokens        Int      @default(1000)
+  created_at        DateTime @default(now())
+  updated_at        DateTime @default(now()) @updatedAt
+
+  @@map("ia_agent_config")
+}
+
+model ChatHistory {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  session_id  String
+  user_id     String
+  role        String
+  content     String
+  model_used  String?
+  tokens_used Int?
+  created_at  DateTime @default(now())
+
+  @@index([session_id])
+  @@index([created_at(sort: Desc)])
+  @@map("chat_history")
+}
+
+model IaWhatsappControl {
+  conversation_id String   @id
+  ia_active       Boolean  @default(true)
+  paused_at       DateTime?
+  paused_by       String?
+  auto_resume_at  DateTime?
+  updated_at      DateTime @default(now()) @updatedAt
+
+  @@map("ia_whatsapp_control")
+}
+
+model IaExecutionLog {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  automation_id   String
+  num_pac         String?
+  contacto_id     String?  @db.Uuid
+  trigger_event   String
+  channel         String
+  message_sent    String?
+  status          String   @default("pendiente")
+  error_message   String?
+  executed_at     DateTime @default(now())
+
+  @@index([automation_id])
+  @@index([num_pac])
+  @@index([executed_at(sort: Desc)])
+  @@map("ia_execution_log")
+}
+
+model IaEscalationKeywords {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  keyword     String   @unique
+  severity    String   @default("alta")
+  action      String
+  active      Boolean  @default(true)
+  created_at  DateTime @default(now())
+
+  @@map("ia_escalation_keywords")
+}
