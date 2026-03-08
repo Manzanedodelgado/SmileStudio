@@ -1,0 +1,3271 @@
+// Prisma Schema — GELITE Migration
+// Auto-generated from live GELITE database 2026-03-08
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// GELITE: Accesos (2,718 rows)
+model Accesos {
+  IdPerfil Int
+  Accion String
+  Acceso Int?
+  Limitador Int?
+  Permiso String?
+  @@id([IdPerfil, Accion])
+  @@map("Accesos")
+}
+
+/// GELITE: AgdAccesos (84 rows)
+model Agdaccesos {
+  IdPerfil Int
+  IdUsu Int
+  Acceso Int?
+  Permiso String?
+  @@id([IdPerfil, IdUsu])
+  @@map("AgdAccesos")
+}
+
+/// GELITE: AgdNotas (1 rows)
+model Agdnotas {
+  IdNota Int @id @default(autoincrement())
+  Nota String?
+  Fecha Int?
+  IdUsu Int?
+  IdCentro Int?
+  @@map("AgdNotas")
+}
+
+/// GELITE: AgrupacionesFormaPago (1 rows)
+model Agrupacionesformapago {
+  Id Int @id @default(autoincrement())
+  Descripcion String
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("AgrupacionesFormaPago")
+}
+
+/// GELITE: AlertPac (1,053 rows)
+model Alertpac {
+  IdCentro Int
+  IdPac Int
+  NumAlerta Int
+  Texto String?
+  Marcado Boolean
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("AlertPac")
+}
+
+/// GELITE: ATMT_Plantillas (47 rows)
+model AtmtPlantillas {
+  IdPlantilla Int @id @default(autoincrement())
+  Descripcion String
+  IdMotivo Int
+  IdFormato Int
+  PlantillaSMS String?
+  IdDoc Int?
+  f_fechareg DateTime @map("_fechareg")
+  AsuntoEmail String?
+  MarcarCitaRecordada Boolean?
+  NombrePlantillaMeta String?
+  URLImagen String?
+  IdPlantillaDefault String?
+  Inactiva DateTime?
+  @@map("ATMT_Plantillas")
+}
+
+/// GELITE: ATMT_Plantillas_ConectoresParams (25 rows)
+model AtmtPlantillasConectoresparams {
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime? @map("_fechaModif")
+  f_idUserModif Int? @map("_idUserModif")
+  Id_Plantilla Int
+  Id_ConectorParam Int
+  Comodin String?
+  Inactivo DateTime?
+  @@map("ATMT_Plantillas_ConectoresParams")
+}
+
+/// GELITE: ATMT_Protocolos (4 rows)
+model AtmtProtocolos {
+  Id Int @id @default(autoincrement())
+  Nombre String
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  f_version Int @map("_version")
+  @@map("ATMT_Protocolos")
+}
+
+/// GELITE: ATMT_Tareas (38 rows)
+model AtmtTareas {
+  IdTarea Int @id @default(autoincrement())
+  IdMotivo Int
+  IdTipoControlRecall Int?
+  IdMotivoRecall Int?
+  IgnorarSiCita Int
+  PrgCantidad Int
+  PrgUnidad Int?
+  PrgCuando Int?
+  IdMedio Int
+  IdPlantilla Int
+  f_fechareg DateTime @map("_fechareg")
+  Descripcion String
+  Inactivo DateTime?
+  Pausado Boolean
+  f_version Int @map("_version")
+  IdProtocolo Int?
+  IdTareaDefault String?
+  @@map("ATMT_Tareas")
+}
+
+/// GELITE: BancoMov (7,366 rows)
+model Bancomov {
+  Apunte Int @id @default(autoincrement())
+  IdBanco Int?
+  Fecha DateTime?
+  Importe Float?
+  Concepto String?
+  Guid_Tenant String
+  @@map("BancoMov")
+}
+
+/// GELITE: Bancos (1 rows)
+model Bancos {
+  IdBanco Int @id @default(autoincrement())
+  Descripcio String?
+  IdPoblacio Int?
+  CP String?
+  Direccion String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  Web String?
+  Notas String?
+  Entidad String?
+  Oficina String?
+  DC String?
+  Cuenta String?
+  Clinica Boolean
+  SCCodSCta String?
+  SCCodDept String?
+  SCCodProd String?
+  SCCodProy String?
+  IdCentro Int?
+  CodIBAN String?
+  CodBIC String?
+  Guid_Tenant String
+  @@map("Bancos")
+}
+
+/// GELITE: CajaFuerte (1 rows)
+model Cajafuerte {
+  IdCajaFuerte Int @id @default(autoincrement())
+  IdCentro Int
+  Descripcio String?
+  SaldoEfectivo Decimal
+  SaldoTalon Decimal
+  f_version Int @map("_version")
+  f_fechareg DateTime @map("_fechareg")
+  Guid_Tenant String
+  @@map("CajaFuerte")
+}
+
+/// GELITE: CajaFuerteDia (1 rows)
+model Cajafuertedia {
+  IdCajaFuerteDia Int @id @default(autoincrement())
+  IdCajaFuerte Int
+  FechaApertura DateTime
+  FechaCierre DateTime?
+  SaldoInicialEfectivo Decimal
+  SaldoFinalEfectivo Decimal
+  SaldoInicialTalon Decimal
+  SaldoFinalTalon Decimal
+  SaldoInicialRecepcion Decimal
+  SaldoFinalRecepcion Decimal
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  Guid_Tenant String
+  @@map("CajaFuerteDia")
+}
+
+/// GELITE: Centros (3 rows)
+model Centros {
+  IdCentro Int @id @default(autoincrement())
+  CodCentro String
+  Descripcio String
+  Direccion String?
+  IdPoblacio Int?
+  CP String?
+  Tel1 String?
+  Tel2 String?
+  Fax String?
+  Email String?
+  Web String?
+  CIF String?
+  Fecha_Corte DateTime?
+  CodSerie String?
+  ExpConta Int?
+  Delegacion String?
+  DescCorta String?
+  Comodin1 String?
+  Comodin2 String?
+  Comodin3 String?
+  Comodin4 String?
+  Comodin5 String?
+  Comodin6 String?
+  RutaFichMutuas String?
+  IdClasificacionCentro Int?
+  CodigoEmpresaPedidos String?
+  RutFichPedidos String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  AOAgdGUID String?
+  ActivacionLiqTrabajosProtesis DateTime?
+  Guid String
+  TipoDocIdent Int
+  Id_GDPRProfile Int
+  Id_UserDirector Int?
+  Gestionable Int
+  Guid_Tenant String
+  @@map("Centros")
+}
+
+/// GELITE: Centros_Conectores (6 rows)
+model CentrosConectores {
+  Id Int @id @default(autoincrement())
+  IdCentro Int
+  IdCentroConector String?
+  IdConector Int
+  IdUser Int
+  f_fechareg DateTime @map("_fechareg")
+  f_fechamod DateTime? @map("_fechamod")
+  Inactivo DateTime?
+  Comodin String?
+  @@map("Centros_Conectores")
+}
+
+/// GELITE: Centros_Tarifas (4 rows)
+model CentrosTarifas {
+  IdCentroTarifa Int @id @default(autoincrement())
+  IdCentro Int
+  IdTarifa Int
+  Inactivo DateTime?
+  Desde DateTime
+  Hasta DateTime?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  Guid_Tenant String
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("Centros_Tarifas")
+}
+
+/// GELITE: Centros_TColabos (24 rows)
+model CentrosTcolabos {
+  IdCentro Int
+  IdCol Int
+  FechaBaja DateTime?
+  Inactivo String?
+  f_fechareg DateTime? @map("_fechareg")
+  isRegisteredInClinipad Boolean?
+  Guid_Tenant String
+  @@id([IdCentro, IdCol])
+  @@map("Centros_TColabos")
+}
+
+/// GELITE: Centros_TProte (1 rows)
+model CentrosTprote {
+  IdCentro Int
+  IdProte Int
+  FechaBaja DateTime?
+  Inactivo String?
+  f_fechareg DateTime? @map("_fechareg")
+  Id Int @id @default(autoincrement())
+  Guid_Tenant String
+  @@map("Centros_TProte")
+}
+
+/// GELITE: Centros_TUsers_S1_Roles (3 rows)
+model CentrosTusersS1Roles {
+  Id Int @id @default(autoincrement())
+  Guid_Centro String
+  Guid_Usuario String
+  Guid_Rol String
+  Guid_Tenant String
+  @@map("Centros_TUsers_S1_Roles")
+}
+
+/// GELITE: CfgDatos (694 rows)
+model Cfgdatos {
+  IdCentro Int?
+  IdCfg Int
+  Valor String
+  IdCfgDatos Int @id @default(autoincrement())
+  Guid_Tenant String
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime? @map("_fechaModif")
+  f_idUserModif Int? @map("_idUserModif")
+  @@map("CfgDatos")
+}
+
+/// GELITE: Clientes (6,154 rows)
+model Clientes {
+  IdCli Int @id @default(autoincrement())
+  TipoCli String?
+  Nombre String?
+  Apellidos String?
+  Direccion String?
+  IdPoblacio Int?
+  CP String?
+  NIF String?
+  Antecedent String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  Web String?
+  Comodin1 String?
+  Comodin2 String?
+  IdTrato Int?
+  Cuenta String?
+  Mailing Boolean
+  Notas String?
+  Entidad String?
+  Oficina String?
+  DC String?
+  IdBanco Int?
+  FecAlta DateTime?
+  SISTEMA String?
+  TARIFA String?
+  FecTarifa DateTime?
+  Inactivo String?
+  FecBaja DateTime?
+  CodCli String?
+  f_fechareg DateTime? @map("_fechareg")
+  IdEmisor Int?
+  IdCIA Int?
+  IdAuxPTarj Int?
+  DiaFact Int?
+  Modelo Int?
+  ModoFact Int?
+  OrdenFactura Int?
+  DesglosarModalidad String?
+  RazonSocial String?
+  DiasCaducidad Int?
+  SCCodSCta String?
+  SCCodDept String?
+  SCCodProd String?
+  SCCodProy String?
+  SCCodSCtaANT String?
+  DiaFactTalon Int?
+  IdCentro Int?
+  TipoDocIdent Int
+  CodIBAN String?
+  CodTar Int?
+  CodImgRC String?
+  IdIdioma Int?
+  FecNacim DateTime?
+  TipoEntidad Int
+  IdentPS String?
+  IdPaisIdent Int?
+  LecturaDocIdentEstado Int
+  LecturaDocIdentFecha DateTime
+  LecturaDocIdentIdUser Int
+  ExternalId String
+  Id_TipoCliente Int?
+  f_version Int @map("_version")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("Clientes")
+}
+
+/// GELITE: Contadores (7 rows)
+model Contadores {
+  Tabla String
+  Valor Int?
+  Ciclico String?
+  MinValor Int?
+  MaxValor Int?
+  MaxAviso Int?
+  IdCentro Int
+  Guid_Tenant String
+  @@id([Tabla, IdCentro, Guid_Tenant])
+  @@map("Contadores")
+}
+
+/// GELITE: ContFormato (1 rows)
+model Contformato {
+  IdFormato Int @id @default(autoincrement())
+  Descripcio String
+  Formato String
+  Contador String
+  IdCentro Int?
+  Guid_Tenant String
+  @@map("ContFormato")
+}
+
+/// GELITE: CPPoblacio (342 rows)
+model Cppoblacio {
+  CP String
+  IdPoblacio Int
+  Id Int @id @default(autoincrement())
+  Guid_Tenant String
+  @@map("CPPoblacio")
+}
+
+/// GELITE: DCitas (47,712 rows)
+model Dcitas {
+  IdUsu Int
+  IdOrden Int
+  Fecha Int?
+  Hora Int?
+  Duracion Int?
+  IdSitC Int?
+  Texto String?
+  FlgBloqueo String?
+  Contacto String?
+  Movil String?
+  IdPac Int?
+  HorLlegada Int?
+  Retraso Int?
+  BOX String?
+  HorConsul Int?
+  HorFinal Int?
+  NOTAS String?
+  NUMPAC String?
+  AgStats String?
+  FecAlta DateTime?
+  Recordada Int
+  Confirmada Int
+  IdBox Int?
+  IdCitasP Int?
+  NumOcur Int?
+  DCitasGrp String?
+  CantIntegGrp Int?
+  Gratuita Boolean?
+  IdUserIns Int?
+  IdCli Int?
+  MotivoAnulacion String?
+  NumAuto String?
+  IdRef Int?
+  IdProced Int?
+  IdPartner Int?
+  FecNacim DateTime?
+  NIF String?
+  IdPacExt String?
+  IdOpc String?
+  Email String?
+  IdCita BigInt
+  IdCia Int?
+  IdTipoEspec Int?
+  IdCol Int?
+  IdCentro Int?
+  Comodin1 String?
+  Comodin2 String?
+  Aceptada DateTime?
+  IdCitaConector String?
+  HorSitCita DateTime?
+  IdGrAgdOpc Int?
+  IdMotivoAnulacion Int?
+  IdIcono Int?
+  NumActos1Tto Int?
+  IdTarifa Int?
+  OrigenExt String?
+  SolicitanteNUMPAC String?
+  SolicitanteDesc String?
+  TipoDocIdent Int
+  IdPaisIdent Int?
+  Id_MotivoCitacion Int?
+  IdOrigenIns Int
+  IdOrden_Bloqueado Int?
+  EnviarRecordatorio DateTime?
+  EnviarConfirmacion DateTime?
+  OrigenAnulacion Int?
+  AnulacionGestionada DateTime?
+  @@id([IdUsu, IdOrden])
+  @@map("DCitas")
+}
+
+/// GELITE: DCitasF (1,681 rows)
+model Dcitasf {
+  IdUsu Int
+  IdOrden Int
+  IdOpc String
+  IdPac Int
+  Fecha Int
+  Hora Int
+  Notas String?
+  @@id([IdUsu, IdOrden])
+  @@map("DCitasF")
+}
+
+/// GELITE: DCitasLogSit (1,265 rows)
+model Dcitaslogsit {
+  IdCitasLogSit Int @id @default(autoincrement())
+  IdUsu Int
+  IdOrden Int
+  IdSitC Int
+  HorSitCita DateTime
+  HorFinSit DateTime
+  IdUserLog Int
+  IdMotivoAnulacion Int?
+  MotivoAnulacion String?
+  f_fechaReg DateTime @map("_fechaReg")
+  IdOrigenSitCita Int
+  @@map("DCitasLogSit")
+}
+
+/// GELITE: DCitasOp (46,845 rows)
+model Dcitasop {
+  IdUsu Int
+  IdOrden Int
+  IdOpc String
+  @@id([IdUsu, IdOrden, IdOpc])
+  @@map("DCitasOp")
+}
+
+/// GELITE: DCitasPeriod (1 rows)
+model Dcitasperiod {
+  IdCitasP Int @id @default(autoincrement())
+  IdUsu Int?
+  IdOpc String
+  FechaInicio DateTime?
+  FechaFinal DateTime?
+  Inactiva Boolean?
+  Hora Int?
+  Duracion Int?
+  Texto String
+  Contacto String
+  Movil String
+  IdPac Int?
+  IdBox Int?
+  Box String
+  Notas String
+  NumPac String
+  FecAlta DateTime?
+  Frecuencia Int?
+  Periodicidad Int?
+  DiaSem String
+  DiaMes Int?
+  Mes Int?
+  DCitasGrp String?
+  CantIntegGrp Int?
+  NumeroCitas Int?
+  @@map("DCitasPeriod")
+}
+
+/// GELITE: DCitasTto (4 rows)
+model Dcitastto {
+  IdCitasTto Int @id @default(autoincrement())
+  IdUsu Int?
+  IdOrden Int?
+  IdentTM Int?
+  IdTto Int?
+  IdTipoOdg Int?
+  Realizado String
+  f_fechareg DateTime? @map("_fechareg")
+  IdCol Int?
+  IdProced Int?
+  IdRef Int?
+  Notas String?
+  Duracion Int
+  Guid_Tenant String
+  @@map("DCitasTto")
+}
+
+/// GELITE: Desktops (6 rows)
+model Desktops {
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  JsonProperties String
+  JsonVersion Int
+  ExternalId String
+  Custom Boolean
+  Description String?
+  Orden Int
+  Restorable Boolean
+  Guid_Tenant String
+  @@map("Desktops")
+}
+
+/// GELITE: DeudaCli (39,664 rows)
+model Deudacli {
+  IdDeudaCli Int @id @default(autoincrement())
+  IdCli Int
+  IdPac Int?
+  NumTto Int?
+  NumFase Int?
+  FecPlazo DateTime
+  Adeudo Float
+  Liquidado Boolean
+  Docs String
+  NFactura String?
+  NNotaTto String?
+  f_fechareg DateTime? @map("_fechareg")
+  Modalidad Int?
+  IdAnulado Int?
+  SCFecExpo DateTime?
+  IdCentro Int?
+  Incobrable DateTime?
+  Pendiente Float?
+  IdentTM Int?
+  IdMotivoIncobrable Int?
+  DescMotivoIncobrable String?
+  IdLiqComisionDet Int?
+  FechaImport DateTime?
+  Guid_Tenant String
+  @@map("DeudaCli")
+}
+
+/// GELITE: DeudaPago (28,283 rows)
+model Deudapago {
+  IdDeudaCli Int
+  IdPagoCli Int
+  Pagado Float
+  FecPago DateTime
+  EditTtos Int?
+  FecExpoCP DateTime?
+  f_fechareg DateTime? @map("_fechareg")
+  IdDeudaPago Int @id @default(autoincrement())
+  IdDocAdminDeuda Int?
+  SubTipoPago Int
+  IdLiqComisionDet Int?
+  Guid_Tenant String
+  CId String?
+  @@map("DeudaPago")
+}
+
+/// GELITE: Dispositivo (1 rows)
+model Dispositivo {
+  IdDisp Int @id @default(autoincrement())
+  TipoDisp Int
+  Descripcio String?
+  GID String?
+  KeyDisp Int?
+  IdPac Int?
+  FecAsig DateTime?
+  IdCentro Int?
+  IdApp String?
+  @@map("Dispositivo")
+}
+
+/// GELITE: DispositivoPac (452 rows)
+model Dispositivopac {
+  IdPac Int
+  Tipo Int
+  IdTipo String
+  AFirmar Boolean?
+  @@id([IdPac, Tipo, IdTipo])
+  @@map("DispositivoPac")
+}
+
+/// GELITE: DocAdmin (11,640 rows)
+model Docadmin {
+  Doc String
+  IdEmisor Int
+  Serie String
+  NumDoc Int
+  Anyo Int
+  FecDoc DateTime?
+  IdCli Int?
+  Nombre String?
+  Apellidos String?
+  Direccion String?
+  NIF String?
+  Modelo Int?
+  FecExpoCP DateTime?
+  ConceptoG String?
+  FecImpreso DateTime?
+  NumImpres Int?
+  Ident Int @id @default(autoincrement())
+  IdUser Int?
+  Abonado Int?
+  Abono Int?
+  f_fechareg DateTime? @map("_fechareg")
+  Hash String?
+  HashControl Int?
+  RazonSocial String?
+  ContabSC String?
+  IdIdioma Int?
+  IdSerieOficial Int?
+  SerieOficial String?
+  NumDocOficial Int?
+  IdMotivo Int?
+  f_version Int @map("_version")
+  NIFTutor String?
+  IdCliTutor Int?
+  IdTalon Int?
+  TipoDocumento Int
+  NumTransaccion Int?
+  IdDevolucionTransaccion Int?
+  IdDocAdminOrigen Int?
+  NumDocExenta Int?
+  NumDocAfecta Int?
+  IdTalonAfecta Int?
+  CId String?
+  IdPaisIdent Int?
+  TipoDocIdent Int
+  TipoFactura String?
+  CP String?
+  CodigoQR String?
+  CodigoATCUD String?
+  Guid_Tenant String
+  f_origen String? @map("_origen")
+  Anulacion Boolean
+  f_Type String? @map("_Type")
+  @@map("DocAdmin")
+}
+
+/// GELITE: DocsFirmados (135 rows)
+model Docsfirmados {
+  IdDocFirma Int @id @default(autoincrement())
+  FechaDoc DateTime
+  FechaIns DateTime
+  TipoDoc Int
+  TipoFirma Int
+  Descripcion String?
+  Original String?
+  Firmado DateTime?
+  FirmaIdUsu Int?
+  IdOrigen Int?
+  IdPac Int?
+  IdColFirma Int?
+  Estado Int?
+  FechaPublicado DateTime?
+  NumRefPublicado String?
+  Id_Pluggin Int?
+  Guid_Tenant String
+  FirmadoColaborador DateTime?
+  @@map("DocsFirmados")
+}
+
+/// GELITE: EdDocs (149 rows)
+model Eddocs {
+  IdDoc Int @id @default(autoincrement())
+  IdGrupo Int?
+  IdSubGrupo Int?
+  FecCreado DateTime?
+  FecModific DateTime?
+  Titulo String?
+  IdUsu Int?
+  IdTipoEspec Int?
+  Publico String?
+  Firmado DateTime?
+  FirmaIdUsu Int?
+  IdentTM Int?
+  IdCol Int?
+  IdIdioma Int?
+  IdCentro Int?
+  Estado Int?
+  CamposVariablesUsados String?
+  @@map("EdDocs")
+}
+
+/// GELITE: EdGrupos (3 rows)
+model Edgrupos {
+  IdGrupo Int
+  Titulo String?
+  IdCentro Int?
+  Id Int @id @default(autoincrement())
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserModif Int @map("_idUserModif")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_version Int @map("_version")
+  @@map("EdGrupos")
+}
+
+/// GELITE: EdMail (196 rows)
+model Edmail {
+  IdRun Int @id @default(autoincrement())
+  FecPrintI DateTime
+  FecPrintF DateTime?
+  IdUser Int
+  IdDoc Int?
+  Notas String?
+  Filtro String?
+  IdCentro Int?
+  @@map("EdMail")
+}
+
+/// GELITE: EdMailL (196 rows)
+model Edmaill {
+  f_gen_id Int @id @default(autoincrement()) @map("_gen_id")
+  Contador Int
+  IdRun Int
+  IdPac Int?
+  IdCli Int?
+  IdUsu Int?
+  IdOrden Int?
+  @@map("EdMailL")
+}
+
+/// GELITE: EdSubGrp (104 rows)
+model Edsubgrp {
+  IdGrupo Int
+  IdSubGrupo Int
+  Titulo String?
+  Id Int
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserModif Int @map("_idUserModif")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_version Int @map("_version")
+  @@id([IdGrupo, IdSubGrupo])
+  @@map("EdSubGrp")
+}
+
+/// GELITE: Emisores (2 rows)
+model Emisores {
+  IdEmisor Int @id @default(autoincrement())
+  Descripcio String?
+  SubNombre1 String?
+  SubNombre2 String?
+  Serie String?
+  Direccion String?
+  IdPoblacio Int?
+  CP String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  Web String?
+  NIF String?
+  SerieAF String?
+  SerieR String?
+  SerieAR String?
+  IdCol Int?
+  IdCentro Int?
+  CodSubCta String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  SerieFRect String?
+  SerieAFRect String?
+  TipoDocIdent Int
+  IdPaisIdent Int?
+  TipoEntidad Int
+  Inactivo DateTime?
+  Capital_Social String?
+  IBAN String?
+  Guid_Tenant String
+  @@map("Emisores")
+}
+
+/// GELITE: ExplPerio (960 rows)
+model Explperio {
+  IdPac Int
+  IdExplPer Int
+  NDent Int
+  borsa1 Int?
+  borsa2 Int?
+  borsa3 Int?
+  borsa4 Int?
+  borsa5 Int?
+  borsa6 Int?
+  recessio1 Int?
+  recessio2 Int?
+  recessio3 Int?
+  recessio4 Int?
+  recessio5 Int?
+  recessio6 Int?
+  sangrat1 String?
+  sangrat2 String?
+  sangrat3 String?
+  sangrat4 String?
+  placa1 String?
+  placa2 String?
+  placa3 String?
+  placa4 String?
+  movilitat1 Int?
+  movilitat2 String?
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Id_PacPerio Int
+  Guid_Tenant String
+  @@map("ExplPerio")
+}
+
+/// GELITE: FormasPago (7 rows)
+model Formaspago {
+  f_gen_id Int @id @default(autoincrement()) @map("_gen_id")
+  IDFPago Int
+  Codigo String
+  Nombre String?
+  FormaPago String?
+  DescFormaPago String?
+  @@map("FormasPago")
+}
+
+/// GELITE: FTX_00000088_Dental (36 rows)
+model Ftx00000088Dental {
+  f_gen_id Int @id @default(autoincrement()) @map("_gen_id")
+  Guid String
+  IdPac Int
+  IdFicha Int
+  fecha DateTime?
+  recomendo String?
+  representante String?
+  tratpsi String?
+  trapsi_text String?
+  medicamento String?
+  antibioticos String?
+  hormonas String?
+  aspirina String?
+  insulina String?
+  anticoagulantes String?
+  tension String?
+  corazon String?
+  bifosfonatos String?
+  anticonceptivos String?
+  tranquilizantes String?
+  cortisona String?
+  medica_otros String?
+  medica_otros_text String?
+  hospitalizado String?
+  hospitalizado_text String?
+  cardiacos String?
+  cardi_corazon String?
+  cardi_sangre_baja String?
+  cardi_sangre_alta String?
+  cardi_dolor_pecho String?
+  cardi_angina String?
+  cardi_infarto String?
+  cardi_soplo String?
+  cardi_respi String?
+  cardi_otros String?
+  cardi_otros_text String?
+  enfermedad_contagios String?
+  hepatitis String?
+  tuberculosis String?
+  sifilis String?
+  vih String?
+  alteraciones String?
+  cerebral String?
+  pulmonares String?
+  cancer String?
+  ictericia String?
+  tos String?
+  epilepsia String?
+  anemia String?
+  artritis String?
+  depresiones String?
+  glaucoma String?
+  diabetes String?
+  ulcera String?
+  mareos String?
+  higado String?
+  rinones String?
+  dolores_cabeza String?
+  radio_quimio String?
+  radio_quimio_text String?
+  sangrado String?
+  transfusion_sangre String?
+  fecha_transfusion DateTime?
+  alergico String?
+  penicilina String?
+  calmantes_sedantes String?
+  tetraciclinas String?
+  anestesia_dental String?
+  codeina String?
+  aler_aspirina String?
+  otros_antibioticos String?
+  otros_antibioticos2 String?
+  otros_anti_text String?
+  otros_anti_text2 String?
+  alergia_a String?
+  asma String?
+  urticaria String?
+  polen String?
+  sinusitis String?
+  alergia_a_otros String?
+  alergia_a_otros_text String?
+  familia_enfermedad String?
+  familia_cardiacas String?
+  familia_diabetes String?
+  familia_cancer String?
+  familia_alergias String?
+  familia_otras String?
+  familia_otras_text String?
+  embarazada String?
+  embarazada_mes String?
+  lactancia String?
+  gravemente_enfermo String?
+  sulfamidas String?
+  EsFumador String?
+  NumCigarrillos Int?
+  TxtMotivoDent String?
+  TxtFechDentista String?
+  TxtAspectoDientes String?
+  CkRegular String?
+  CkIntermitente String?
+  CkInfrecuente String?
+  CkHigiene1 String?
+  CkHigiene2 String?
+  CkHigiene3 String?
+  CkHigieneNunca String?
+  CkRevision1 String?
+  CkRevision2 String?
+  CkRevision3 String?
+  CkRevisionNunca String?
+  CkAfec1 String?
+  CkAfec2 String?
+  CkAfec3 String?
+  CkAfec4 String?
+  CkAfec5 String?
+  CkAfec6 String?
+  CkAfec7 String?
+  CkAfec8 String?
+  CkEncia1 String?
+  CkEncia2 String?
+  CkEncia3 String?
+  CkEncia4 String?
+  CkSens1 String?
+  CkSens2 String?
+  CkSens3 String?
+  CkSens4 String?
+  CkCepilla1 String?
+  CkCepilla2 String?
+  CkCepilla3 String?
+  CkCepilla4 String?
+  CkUsoHigiene1 String?
+  CkUsoHigiene2 String?
+  CkUsoHigiene3 String?
+  CkUsoHigiene4 String?
+  CkUsoHigiene5 String?
+  CkUsoHigiene6 String?
+  CkUsoHigiene7 String?
+  CkUsoHigiene8 String?
+  CkTrat1 String?
+  CkTrat2 String?
+  CkTrat3 String?
+  CkTrat4 String?
+  RadProt String?
+  RadFerula String?
+  RadRonca String?
+  RadAprieta String?
+  RadBlanqueo String?
+  RadOrto String?
+  RadAspecto String?
+  @@map("FTX_00000088_Dental")
+}
+
+/// GELITE: GDPR_FTX_00000001 (37 rows)
+model GdprFtx00000001 {
+  f_gen_id Int @id @default(autoincrement()) @map("_gen_id")
+  IdPac Int
+  IdFicha Int
+  Fecha DateTime?
+  CONS_001 String?
+  CONS_002 String?
+  CONS_003 String?
+  CONS_004 String?
+  @@map("GDPR_FTX_00000001")
+}
+
+/// GELITE: GDPR_FTX_Consentimientos (4 rows)
+model GdprFtxConsentimientos {
+  Id Int @id @default(autoincrement())
+  Descripcion String
+  TextoAyuda String
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("GDPR_FTX_Consentimientos")
+}
+
+/// GELITE: GDPR_FTX_Fichas (1 rows)
+model GdprFtxFichas {
+  Id Int @id @default(autoincrement())
+  Titulo String
+  TextoLegal String
+  SQLInforme String
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("GDPR_FTX_Fichas")
+}
+
+/// GELITE: GDPR_FTX_Fichas_Consentimientos (4 rows)
+model GdprFtxFichasConsentimientos {
+  Id Int @id @default(autoincrement())
+  IdFicha Int
+  IdConsentimiento Int
+  Orden Int
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("GDPR_FTX_Fichas_Consentimientos")
+}
+
+/// GELITE: GDPRProfiles (1 rows)
+model Gdprprofiles {
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Description String
+  CodExt String?
+  LegalName String?
+  Address String?
+  CommercialName String?
+  HealthURL String?
+  GDPRURL String?
+  HCCWarn String?
+  ShowIC Boolean
+  Guid_Tenant String
+  @@map("GDPRProfiles")
+}
+
+/// GELITE: IconoTratAgenda (19 rows)
+model Iconotratagenda {
+  IdIcono Int @id @default(autoincrement())
+  Descripcion String
+  ImagenTxt String
+  @@map("IconoTratAgenda")
+}
+
+/// GELITE: Idioma (10 rows)
+model Idioma {
+  IdIdioma Int @id @default(autoincrement())
+  Codi String
+  Descripcio String
+  Actiu Int
+  Guid_Tenant String
+  @@map("Idioma")
+}
+
+/// GELITE: LinAdmin (21,301 rows)
+model Linadmin {
+  NumLinea Int
+  IdDeudaCli Int?
+  IdPagoCli Int?
+  Importe Float?
+  Concepto String?
+  IdPac Int?
+  Abonado Int?
+  Abono Int?
+  f_fechareg DateTime? @map("_fechareg")
+  BaseImponible Float?
+  IdTipoIVA Int?
+  TpcIVA Float?
+  ImporteIVA Float?
+  identTM Int?
+  IdLinAdmin Int @id @default(autoincrement())
+  IdDocAdmin Int
+  IdDeudaPago Int?
+  f_version Int @map("_version")
+  IdRegPendContab Int?
+  Actos Int
+  Dto Int?
+  ImporteDto Decimal?
+  Guid_Tenant String
+  @@map("LinAdmin")
+}
+
+/// GELITE: LogErrores (2,881 rows)
+model Logerrores {
+  IdLog Int @id @default(autoincrement())
+  ApplicationName String?
+  VersionInfo String?
+  ExceptClassName String?
+  ExceptMenssage String?
+  LogException String?
+  LogAdicional String?
+  f_FechaReg DateTime? @map("_FechaReg")
+  ScreenShot Bytes?
+  @@map("LogErrores")
+}
+
+/// GELITE: OrigenCita (1 rows)
+model Origencita {
+  Id Int @id @default(autoincrement())
+  f_fechaReg DateTime @map("_fechaReg")
+  OrigenExt String
+  Descripcion String
+  @@map("OrigenCita")
+}
+
+/// GELITE: PacCli (6,129 rows)
+model Paccli {
+  IdPac Int
+  IdCli Int
+  Poliza String?
+  Tarjeta String?
+  Comodin1 Int?
+  Comodin2 String?
+  FecAlta DateTime?
+  FecCaduc DateTime?
+  Inactivo String?
+  FecBaja DateTime?
+  Texto String?
+  FecUltPase DateTime?
+  Version_TS String?
+  Tarjeta24 String?
+  Certificado Int?
+  NOrden Int?
+  IdProdModTarifa Int?
+  MotivoAsignacion String?
+  IdUser Int?
+  Pista1 String?
+  Pista2 String?
+  Cobertura String?
+  Localizador String?
+  FechaLocalizador DateTime?
+  Id Int @id @default(autoincrement())
+  Guid_Tenant String
+  @@map("PacCli")
+}
+
+/// GELITE: Pacientes (6,117 rows)
+model Pacientes {
+  IdPac Int @id @default(autoincrement())
+  IdCli Int?
+  IdCliPac Int?
+  NumPac String
+  IdMutDefec Int?
+  IdCliDefec Int?
+  Nombre String?
+  Apellidos String?
+  NIF String?
+  Direccion String?
+  IdPoblacio Int?
+  CP String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  Web String?
+  FecNacim DateTime?
+  Comodin1 String?
+  Comodin2 String?
+  Comodin3 String?
+  Comodin4 String?
+  Comodin5 String?
+  Comodin6 String?
+  IdRefOri Int?
+  RefOriTxt String?
+  IdRefDes Int?
+  Descuento Int?
+  IdProfesio Int?
+  IdEcivil Int?
+  NumHijos Int?
+  Sexo String?
+  IdTrato Int?
+  Foto Int?
+  IdEstado Int?
+  Mailing Boolean
+  Notas String?
+  FecAlta DateTime?
+  TipoOdg Int?
+  AceptaLOPD Boolean?
+  AceptaInfo Boolean
+  AceptaSMS Boolean
+  IdCol Int?
+  IdColAux Int?
+  AgNumVis Int?
+  AgTpoTotE Int?
+  AgTpoTotR Int?
+  AgTpoTotAt Int?
+  f_fechareg DateTime? @map("_fechareg")
+  IdProced Int?
+  CIP String?
+  AgNumFallos Int?
+  Comodin7 String?
+  IdIdioma Int?
+  GrupoSanguineo String?
+  IdCentro Int?
+  TipoDocIdent Int
+  NumSS String?
+  Exitus DateTime?
+  ExitusObs String?
+  Inactivo DateTime?
+  MotivoInactivo String?
+  IdPacReferidor Int?
+  AceptaEmail Boolean?
+  AceptaPostal Boolean?
+  IdPaisIdent Int?
+  IdCliTutor Int?
+  f_version Int @map("_version")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  LecturaDocIdentEstado Int
+  LecturaDocIdentFecha DateTime
+  LecturaDocIdentIdUser Int
+  IdUserAsesor Int?
+  AceptaGDPR Boolean?
+  IdTipoDireccion Int
+  SeccionCensal String?
+  CoordenadasX String?
+  CoordenadasY String?
+  NoContactable Boolean
+  Derivado Boolean
+  ExternalId String
+  Guid_Tenant String
+  AceptaBots Boolean
+  AceptaWhatsApp Boolean
+  @@map("Pacientes")
+}
+
+/// GELITE: Pacientes_Tarifas (6,215 rows)
+model PacientesTarifas {
+  IdPacienteTarifa Int @id @default(autoincrement())
+  IdPac Int
+  IdTarifa Int
+  Poliza String?
+  Tarjeta String?
+  FecAlta DateTime
+  FecCaduc DateTime?
+  FecUltPase DateTime?
+  Texto String?
+  Version_TS String?
+  Tarjeta24 String?
+  Certificado Int?
+  NOrden Int?
+  MotivoAsignacion String?
+  IdProdModTarifa Int?
+  IdUser Int?
+  Comodin1 Int?
+  Comodin2 String?
+  Inactivo DateTime?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  Localizador String?
+  FechaLocalizador DateTime?
+  Pista1 String?
+  Pista2 String?
+  Cobertura String?
+  Guid_Tenant String
+  @@map("Pacientes_Tarifas")
+}
+
+/// GELITE: Pacientes_Tarifas_log (6,215 rows)
+model PacientesTarifasLog {
+  IdLog Int @id @default(autoincrement())
+  Accion Int
+  IdPacienteTarifa Int
+  IdPac Int
+  IdTarifa Int
+  MotivoAsignacion String?
+  f_fechareg DateTime @map("_fechareg")
+  f_iduser Int @map("_iduser")
+  Guid_Tenant String
+  @@map("Pacientes_Tarifas_log")
+}
+
+/// GELITE: PacientesLog (1,930 rows)
+model Pacienteslog {
+  Id Int @id @default(autoincrement())
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  IdPac Int
+  AceptaGDPR Boolean?
+  Derivado Boolean
+  NoContactable Boolean
+  @@map("PacientesLog")
+}
+
+/// GELITE: PacientesPublic (97 rows)
+model Pacientespublic {
+  IdPac Int @id @default(autoincrement())
+  FecCreacion DateTime?
+  FecModificacion DateTime?
+  Direccion String?
+  CP String?
+  Poblacion String?
+  Provincia String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  FecNacim DateTime?
+  Sexo String?
+  EstadoCivil String?
+  Profesion String?
+  NumHijos Int?
+  NIF String?
+  RefOriTxt String?
+  Nombre String?
+  Apellidos String?
+  Mailing Boolean?
+  AceptaLOPD Boolean?
+  AceptaInfo Boolean?
+  AceptaSMS Boolean?
+  Comodin1 String?
+  Comodin2 String?
+  Comodin3 String?
+  Comodin4 String?
+  Comodin5 String?
+  Comodin6 String?
+  Comodin7 String?
+  AceptaEmail Boolean?
+  AceptaPostal Boolean?
+  AceptaGDPR Boolean?
+  @@map("PacientesPublic")
+}
+
+/// GELITE: PacMensajes (4 rows)
+model Pacmensajes {
+  IdMsg Int @id @default(autoincrement())
+  IdPac Int?
+  FechaHoraCreacion DateTime?
+  IdUsuDe Int?
+  Mensaje String?
+  Leido String?
+  Guid_Tenant String
+  @@map("PacMensajes")
+}
+
+/// GELITE: PacPerio (30 rows)
+model Pacperio {
+  IdPac Int
+  IdExplPer Int
+  Fecha DateTime?
+  NotasSup String?
+  NotasInf String?
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("PacPerio")
+}
+
+/// GELITE: PagoCli (13,604 rows)
+model Pagocli {
+  IdPagoCli Int @id @default(autoincrement())
+  IdCli Int
+  Pagado Float
+  FecPago DateTime
+  IdForPago Int
+  Oficina String?
+  Entidad String?
+  NumIngre String?
+  IdBanco Int?
+  IdUser Int?
+  Docs String?
+  NRecibo String?
+  NCPago String?
+  FecExpoCP DateTime?
+  IdAnulado Int?
+  f_fechareg DateTime? @map("_fechareg")
+  ContabSC String?
+  IdCentro Int?
+  CodIBAN String?
+  IdMotivo Int?
+  NoDisponible DateTime?
+  Cuotas Int?
+  FechaCuota DateTime?
+  IdentTM Int?
+  NFactura String?
+  Tipo Int
+  IdentPS Int?
+  FP_Codigo1 String?
+  FP_Codigo2 String?
+  FP_Codigo3 String?
+  IdLiqComisionDet Int?
+  Automatico Boolean
+  NumTransaccion Int?
+  IdDevolucionTransaccion Int?
+  IdPasarelaPago Int?
+  IdRemesaBancaria Int?
+  IdPlanEcoCuota Int?
+  IdPagoCliRelacionado Int?
+  FechaImport DateTime?
+  CId String?
+  Id_SolicitudDevolucion Int?
+  Guid_Tenant String
+  @@map("PagoCli")
+}
+
+/// GELITE: PlanEco (1 rows)
+model Planeco {
+  IdPac Int
+  NumPlan Int
+  Titulo String?
+  Importe Float?
+  Entrada Float?
+  Cuotas Int?
+  CuotaImpor Float?
+  Periodo Int?
+  DiscoBanco Boolean
+  IdForPago Int?
+  IdEmisor Int?
+  Serie String?
+  IdBanco Int?
+  IdCol Int?
+  GenerarDoc String?
+  IdCli Int?
+  FecEntrada DateTime?
+  FecInicio DateTime?
+  FecActiva DateTime?
+  Notas String?
+  GenAdeudo Boolean?
+  IdTto Int?
+  Estado Int?
+  FirmadoSEPA Boolean
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Id_TtoEntrada Int?
+  Guid_Tenant String
+  @@map("PlanEco")
+}
+
+/// GELITE: PlanEcoL (6 rows)
+model Planecol {
+  IdPac Int
+  NumPlan Int
+  NumCuota Int
+  FecAdeudo DateTime?
+  FecPago DateTime?
+  Importe Float?
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Id_PlanEco Int
+  Guid_Tenant String
+  @@map("PlanEcoL")
+}
+
+/// GELITE: Presu (10,518 rows)
+model Presu {
+  IdPac Int
+  NumSerie Int
+  NumPre Int
+  Titulo String?
+  Notas String?
+  Direccion String?
+  IdPoblacio Int?
+  CP String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  Web String?
+  FecPresup DateTime?
+  FecAcepta DateTime?
+  IdCol Int?
+  Emisor Int?
+  Ident Int
+  FecRechaz DateTime?
+  ObsRechaz String?
+  IdUserElabora Int?
+  IdCentro Int?
+  IdUserPresentacion Int?
+  UniqueID Int?
+  IdPresuOrigen Int?
+  IdTipoPresupuesto Int?
+  Estado Int
+  AceptadoFueraValidez Int
+  Financiacion Int
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  RechazadoPorAlternativa Boolean
+  AlternativaDe Int?
+  EsAlternativa Int
+  IdCanastaDiagnostico Int?
+  Id_UserDesbloqueo Int?
+  FechaDesbloqueo DateTime?
+  Id_UserResponsable Int?
+  ContratoFinanciacion String?
+  Id_MotivoRechaz Int?
+  Id_UserRechaz Int?
+  Id_PresuOriginal Int?
+  FechaEntregaDigitalmente DateTime?
+  FechaRecibidoCliente DateTime?
+  RecibidoDigitalmente Boolean
+  Guid_Tenant String
+  Serie String?
+  NumSeriePresu Int?
+  Hash String?
+  HashControl Int?
+  CodigoATCUD String?
+  CodigoQR String?
+  FechaAceptadoDigitalmente DateTime?
+  @@id([IdPac, NumPre])
+  @@map("Presu")
+}
+
+/// GELITE: PresuTipo (30 rows)
+model Presutipo {
+  IdPresuTipo Int @id @default(autoincrement())
+  Titulo String
+  Notas String?
+  IdCol Int?
+  Emisor Int?
+  IdTipoPresupuesto Int?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  TipoHallazgo String?
+  @@map("PresuTipo")
+}
+
+/// GELITE: PresuTipoTto (243 rows)
+model Presutipotto {
+  IdPresuTipo Int
+  IdTto Int
+  IdCol Int?
+  Notas String
+  Id Int @id @default(autoincrement())
+  Orden Int
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  LinPre Int
+  Actos Int
+  Guid_Tenant String
+  @@map("PresuTipoTto")
+}
+
+/// GELITE: PresuTto (117,256 rows)
+model Presutto {
+  IdPac Int
+  NumSerie Int
+  NumPre Int
+  LinPre Int
+  IdTto Int?
+  ZonasBoca Int?
+  PiezasAdu Decimal?
+  PiezasLec Decimal?
+  PiezasNum Decimal?
+  ZonasPieza Decimal?
+  DespX Int?
+  DespY Int?
+  Rotacion Int?
+  StaTto Int?
+  FecIni DateTime?
+  FecFin DateTime?
+  IdCol Int?
+  IdCli Int?
+  Unidades Int?
+  ImportePre Float?
+  Dto Int?
+  Notas String?
+  IdTipoOdg Int?
+  Tiempo Int?
+  FecAcepta DateTime?
+  BaseImponible Float?
+  IdTipoIVA Int?
+  TpcIVA Float?
+  ImporteIVA Float?
+  ImporteUni Float?
+  IdColAux Int?
+  ImporteDto Float?
+  Ident Int @id @default(autoincrement())
+  Orden Int?
+  IdTratamiento Int?
+  f_version Int @map("_version")
+  IdTtoMedOrig Int?
+  Cuadrantes Decimal?
+  Arcadas Decimal?
+  Id_Presu Int
+  Guid_Tenant String
+  @@map("PresuTto")
+}
+
+/// GELITE: Recalls (1,147 rows)
+model Recalls {
+  IdPac Int
+  NumRec Int
+  Fecha DateTime?
+  IdMotivo Int?
+  Comentario String?
+  Hora DateTime?
+  Telefono Boolean
+  Carta Boolean
+  EMail Boolean
+  SMS Boolean
+  Asistido Boolean
+  IdCol Int?
+  Citado Boolean
+  IdCentro Int?
+  FechaContacto DateTime?
+  IdColRevisa Int?
+  IdEstado Int
+  Observaciones String?
+  IdResultado Int?
+  IdUsuRealiza Int?
+  f_iduser Int @map("_iduser")
+  f_fechareg DateTime @map("_fechareg")
+  IdOpc String?
+  Id Int
+  f_version Int @map("_version")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  IdUsuCita Int?
+  IdOrdenCita Int?
+  IdRecallOrigen Int?
+  IdUsuCitaOrigen Int?
+  IdOrdenCitaOrigen Int?
+  Id_Presu Int?
+  Id_Sch_Appointments Int?
+  Guid_Tenant String
+  Id_TtosMed Int?
+  @@id([IdPac, NumRec])
+  @@map("Recalls")
+}
+
+/// GELITE: RecallsLog (1,159 rows)
+model Recallslog {
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  IdRecall Int
+  Fecha DateTime?
+  IdMotivo Int?
+  Comentario String?
+  Hora DateTime?
+  Telefono Boolean
+  Carta Boolean
+  EMail Boolean
+  SMS Boolean
+  Asistido Boolean
+  IdCol Int?
+  Citado Boolean
+  IdCentro Int?
+  FechaContacto DateTime?
+  IdColRevisa Int?
+  IdEstado Int?
+  Observaciones String?
+  IdResultado Int?
+  IdUsuRealiza Int?
+  IdOpc String?
+  IdUsuCita Int?
+  IdOrdenCita Int?
+  IdRecallOrigen Int?
+  Id_Presu Int?
+  Id_Sch_Appointments Int?
+  Guid_Tenant String
+  Id_TtosMed Int?
+  @@map("RecallsLog")
+}
+
+/// GELITE: RecetasCab (1,258 rows)
+model Recetascab {
+  IdPac Int
+  IdUsu Int
+  IdTipoEspec Int?
+  Fecha DateTime?
+  Descripcio String?
+  FecIns DateTime?
+  IdEmisor Int?
+  IdCol Int
+  Publico String?
+  FechaImpresion DateTime?
+  Notas String?
+  IdCentro Int?
+  IdVisita Int?
+  IdTalonRecetaCVE Int?
+  NotasFarmaceutico String?
+  Diagnostico String?
+  TipoReceta Int
+  IdRecetaIdent Int @id @default(autoincrement())
+  CVE String?
+  Dispensada DateTime?
+  NumImpresiones Int
+  Anulada DateTime?
+  Guid_Tenant String
+  @@map("RecetasCab")
+}
+
+/// GELITE: RecetasDet (1,258 rows)
+model Recetasdet {
+  IdPac Int
+  IdReceta Int
+  IdTrat Int?
+  DescFarmaco String?
+  DispPrev DateTime?
+  Duracion String?
+  Envases Int?
+  OrdenDisp Int?
+  Pauta String?
+  Posologia String?
+  Unidades String?
+  IdRecetaDet Int @id @default(autoincrement())
+  Guid_Tenant String
+  @@map("RecetasDet")
+}
+
+/// GELITE: RegApun (42,993 rows)
+model Regapun {
+  IdRegApun Int @id @default(autoincrement())
+  FecReg DateTime?
+  IdUser Int?
+  FecOperaci DateTime?
+  IdTRegApun Int?
+  IdForPago Int?
+  Importe Float?
+  IdPac Int?
+  IdCli Int?
+  IdProveed Int?
+  IdCol Int?
+  Notas String?
+  IdCentro Int?
+  Guid_Tenant String
+  @@map("RegApun")
+}
+
+/// GELITE: RptDefec (612 rows)
+model Rptdefec {
+  IdCentro Int
+  IdUser Int
+  IdAccionRp Int
+  IdInforme Int
+  IdTemplate Int
+  @@id([IdCentro, IdUser, IdAccionRp, IdInforme, IdTemplate])
+  @@map("RptDefec")
+}
+
+/// GELITE: RptTempl (225 rows)
+model Rpttempl {
+  IdTemplate Int @id @default(autoincrement())
+  IdInforme Int
+  Descripcio String?
+  Modificado DateTime?
+  IdCentro Int?
+  @@map("RptTempl")
+}
+
+/// GELITE: SeriesOficiales (5 rows)
+model Seriesoficiales {
+  IdSerieOficial Int @id @default(autoincrement())
+  SerieOficial String
+  Descripcion String?
+  Formato String?
+  IdCentro Int?
+  TipoSerie Int?
+  @@map("SeriesOficiales")
+}
+
+/// GELITE: TAlmacen (1 rows)
+model Talmacen {
+  IdAlmacen Int @id @default(autoincrement())
+  Descripcio String?
+  IdCentro Int?
+  AceptaPedidos Int
+  Inventariable Int
+  DeDeposito Int
+  Guid_Tenant String
+  @@map("TAlmacen")
+}
+
+/// GELITE: TalonReceta (15 rows)
+model Talonreceta {
+  IdTalonReceta Int @id @default(autoincrement())
+  IdCol Int
+  IdCentro Int?
+  NumeroLote String
+  TipoDoc String
+  NIF String
+  Nombre String?
+  Apellido1 String
+  Apellido2 String?
+  NumColegiado String
+  DirCP String?
+  DirPostal String?
+  DirMunicipio String?
+  DirPais String?
+  DirProvinica String?
+  DirTipoVia String?
+  IdColegio String?
+  TrabCentro String?
+  TrabCIF String?
+  TrabPrincipal Int?
+  f_FechaReg DateTime? @map("_FechaReg")
+  Libres Int
+  @@map("TalonReceta")
+}
+
+/// GELITE: TalonRecetaCVE (1,202 rows)
+model Talonrecetacve {
+  IdTalonRecetaCVE Int @id @default(autoincrement())
+  IdTalonReceta Int
+  Numero String
+  CVE String
+  Utilizado Int
+  @@map("TalonRecetaCVE")
+}
+
+/// GELITE: Tarifas (4 rows)
+model Tarifas {
+  IdTarifa Int @id @default(autoincrement())
+  Codigo String
+  Descripcion String
+  Notas String?
+  Sistema String?
+  CodCli String?
+  DiasCaducidad Int
+  IdCli Int
+  IdTarifaBase Int?
+  IdTarifaComparativa Int?
+  IdTipoTarifa Int?
+  IdFamiliaTarifa Int?
+  Inactivo DateTime?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  LiqInmediata Boolean
+  RequiereValidacion Boolean
+  TipoValidacion Int
+  IdGestionTarifa Int
+  Guid_Tenant String
+  @@map("Tarifas")
+}
+
+/// GELITE: TAuxFarmacos (15,844 rows)
+model Tauxfarmacos {
+  IdFarmaco Int @id @default(autoincrement())
+  CodFarmaco String?
+  Descripcion String?
+  Presentacion String?
+  VD_IdEspec Int?
+  VD_IdPack Int?
+  VD_CodATC String?
+  VD_NomATC String?
+  VD_Precio Float?
+  VD_PrecioLab Float?
+  Posologia String?
+  Composicion String?
+  Indicacion String?
+  Inactivo String
+  VD_CodNal String?
+  VD_NomLab String?
+  Guid_Tenant String
+  @@map("TAuxFarmacos")
+}
+
+/// GELITE: TAuxPaseTarjeta (1 rows)
+model Tauxpasetarjeta {
+  f_gen_id Int @id @default(autoincrement()) @map("_gen_id")
+  Id Int
+  Codigo String
+  MascTarjeta String?
+  FormatoTitular String?
+  SeparadorTitular String?
+  REXP_Dato String?
+  REXP_Control String?
+  POS_Texto String?
+  POS_Nombre String?
+  POS_Tarjeta String?
+  POS_FInicio String?
+  POS_FExp String?
+  POS_Cobertura String?
+  @@map("TAuxPaseTarjeta")
+}
+
+/// GELITE: TAuxTipoExpComp (1 rows)
+model Tauxtipoexpcomp {
+  IdTipoEC Int @id @default(autoincrement())
+  Descripcion String?
+  Guid_Tenant String
+  @@map("TAuxTipoExpComp")
+}
+
+/// GELITE: TCalCa (10 rows)
+model Tcalca {
+  IdCal Int @id @default(autoincrement())
+  Descripcio String?
+  Inactivo String?
+  IdCentro Int?
+  @@map("TCalCa")
+}
+
+/// GELITE: TCalDias (408 rows)
+model Tcaldias {
+  IdCal Int
+  IdDia Int
+  IdUsu Int
+  IdSit Int?
+  @@id([IdCal, IdDia, IdUsu])
+  @@map("TCalDias")
+}
+
+/// GELITE: TCalHor (32 rows)
+model Tcalhor {
+  IdCal Int
+  IdDia Int
+  HIni Int
+  HFin Int
+  AOOnLine String?
+  @@id([IdCal, IdDia, HIni, HFin])
+  @@map("TCalHor")
+}
+
+/// GELITE: TColabos (24 rows)
+model Tcolabos {
+  IdCol Int @id @default(autoincrement())
+  Codigo String?
+  Alias String?
+  Apellidos String?
+  Nombre String?
+  IdPoblacio Int?
+  CP String?
+  Direccion String?
+  NIF String?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  EMail String?
+  Web String?
+  FecBaja DateTime?
+  Activo String
+  Horario String?
+  Notas String?
+  Comision Int?
+  ReComision String
+  Cobro String?
+  CodInt String?
+  FecAlta DateTime?
+  ReGastos String?
+  TpcGastos Int?
+  Gasto String?
+  PrecioFijo String?
+  TpcPFijo Int?
+  IdTipoColab Int?
+  NumColeg String?
+  CobPropios String?
+  TipoRealizado String?
+  IdGrpColab Int?
+  IRPF Int?
+  TipoComision String?
+  JefeGrupo Int?
+  IdColJefeGrupo Int?
+  IdRef Int?
+  IdProced Int?
+  IdEmisor Int?
+  PIN String?
+  FechaPIN DateTime?
+  InicioEspecCM DateTime?
+  TipoContrato Int
+  TipoDocIdent Int
+  IdPaisIdent Int?
+  ExternalId String
+  ExternalLogin String?
+  ExternalPwd String?
+  Guid_Tenant String
+  @@map("TColabos")
+}
+
+/// GELITE: TConectores (40 rows)
+model Tconectores {
+  IdConector Int @id @default(autoincrement())
+  Descrip String?
+  Timeout Int?
+  Log_Request Boolean?
+  Log_Response Boolean?
+  Demo Boolean?
+  Demo_ContadorNRef Int?
+  Frecuencia Int?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Inactivo DateTime?
+  Comodin String?
+  UsarProxy Boolean
+  Guid_Tenant String
+  @@map("TConectores")
+}
+
+/// GELITE: TConectorParams (98 rows)
+model Tconectorparams {
+  Id Int @id @default(autoincrement())
+  IdConector Int
+  IdEmisor Int?
+  IdCol Int?
+  Area Int?
+  Servicio Int?
+  Descrip String?
+  Terminal String?
+  Usuario String?
+  LoginPass String?
+  URL_WS String?
+  Path_XSD String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  IdCentro Int?
+  Comodin1 String?
+  PathCertificado String?
+  PreShared_Key String?
+  @@map("TConectorParams")
+}
+
+/// GELITE: TCtasGen (11 rows)
+model Tctasgen {
+  IdCta String
+  Descripcio String
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TCtasGen")
+}
+
+/// GELITE: TDocumentosPac (1,217 rows)
+model Tdocumentospac {
+  IdDocPac Int @id @default(autoincrement())
+  IdPac Int
+  FechaDoc DateTime?
+  FechaIns DateTime?
+  Descripcion String?
+  Original String?
+  Notas String?
+  IdUsu Int
+  TipoDoc Int?
+  Firmado DateTime?
+  FirmaIdUsu Int?
+  Guid_Tenant String
+  @@map("TDocumentosPac")
+}
+
+/// GELITE: TECivil (4 rows)
+model Tecivil {
+  IdECivil Int @id @default(autoincrement())
+  Descripcio String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TECivil")
+}
+
+/// GELITE: TEspecOMC (66 rows)
+model Tespecomc {
+  IdTipoEspec Int @id @default(autoincrement())
+  CodigoOMC String?
+  Descripcio String
+  Dental Int?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TEspecOMC")
+}
+
+/// GELITE: TEstados (2 rows)
+model Testados {
+  IdEstado Int @id @default(autoincrement())
+  Descripcio String?
+  EstadoFiliacion Int?
+  EstadoPizarra Int?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TEstados")
+}
+
+/// GELITE: TForPago (15 rows)
+model Tforpago {
+  IdForPago Int @id @default(autoincrement())
+  Tipo Int
+  Descripcio String?
+  Inactivo DateTime?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  IdAgrupacionFormaPago Int?
+  ModoFinanciacion Int
+  TPVVirtual Boolean
+  TPVFisico Boolean
+  Guid_Tenant String
+  @@map("TForPago")
+}
+
+/// GELITE: TGrpColab (2 rows)
+model Tgrpcolab {
+  IdGrpColab Int @id @default(autoincrement())
+  Descripcio String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TGrpColab")
+}
+
+/// GELITE: TGrupos (29 rows)
+model Tgrupos {
+  IdGrupo Int @id @default(autoincrement())
+  Descripcio String?
+  Imputable Boolean
+  SCCodSCta String?
+  SCCodDept String?
+  SCCodProd String?
+  SCCodProy String?
+  Antecedent String?
+  SCCodSCDto String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  EsControl Int
+  Guid_Tenant String
+  @@map("TGrupos")
+}
+
+/// GELITE: TICD9 (18,928 rows)
+model Ticd9 {
+  IdICD9 Int @id @default(autoincrement())
+  CodICD9 String?
+  Descripcion String?
+  ClonDe String?
+  Visible Int?
+  VD_IdICD9 Int?
+  VD_CodICD9 String?
+  Guid_Tenant String
+  @@map("TICD9")
+}
+
+/// GELITE: TipoControlRecall (4 rows)
+model Tipocontrolrecall {
+  IdTipoControlRecall Int @id @default(autoincrement())
+  Descripcion String
+  Guid_Tenant String
+  @@map("TipoControlRecall")
+}
+
+/// GELITE: TipoOrtoCasos_ConceptosColaboracion (5 rows)
+model TipoortocasosConceptoscolaboracion {
+  Id Int @id @default(autoincrement())
+  Codigo String
+  Descripcion String
+  Posicion Int
+  Valoracion Int
+  Inactivo DateTime?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TipoOrtoCasos_ConceptosColaboracion")
+}
+
+/// GELITE: TipoOrtoCasos_ConceptosHigiene (5 rows)
+model TipoortocasosConceptoshigiene {
+  Id Int @id @default(autoincrement())
+  Codigo String
+  Descripcion String
+  Posicion Int
+  Valoracion Int
+  Inactivo DateTime?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TipoOrtoCasos_ConceptosHigiene")
+}
+
+/// GELITE: TipoOrtoCasos_EstadosCaso (4 rows)
+model TipoortocasosEstadoscaso {
+  Id Int @id @default(autoincrement())
+  Descripcion String
+  Posicion Int
+  Inactivo DateTime?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TipoOrtoCasos_EstadosCaso")
+}
+
+/// GELITE: TipoOrtoCasos_Intervenciones (3 rows)
+model TipoortocasosIntervenciones {
+  Id Int @id @default(autoincrement())
+  Descripcion String
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TipoOrtoCasos_Intervenciones")
+}
+
+/// GELITE: TiposFormaPago (20 rows)
+model Tiposformapago {
+  Id Int @id @default(autoincrement())
+  Descripcion String
+  Bonificable Boolean
+  f_fechaReg DateTime @map("_fechaReg")
+  @@map("TiposFormaPago")
+}
+
+/// GELITE: TiposPresupuestos (6 rows)
+model Tipospresupuestos {
+  IdTipoPresupuesto Int @id @default(autoincrement())
+  Descripcion String
+  IdTipoEspec Int?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  LiqEnCurso Boolean
+  Guid_Tenant String
+  @@map("TiposPresupuestos")
+}
+
+/// GELITE: TMotivoAsignacion (32 rows)
+model Tmotivoasignacion {
+  MotivoAsignacion String?
+  Tipo Int?
+  Ident Int @id @default(autoincrement())
+  ObligarTexto Boolean
+  ImputableCentro Int?
+  Codigo String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  InternalId Int
+  TipoAccion Int?
+  Guid_Tenant String
+  @@map("TMotivoAsignacion")
+}
+
+/// GELITE: TMotivoIncidencia (1 rows)
+model Tmotivoincidencia {
+  IdMotivo Int @id @default(autoincrement())
+  IdTipoIncidencia Int
+  Descripcio String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TMotivoIncidencia")
+}
+
+/// GELITE: TMRecall (10 rows)
+model Tmrecall {
+  IdMotivo Int @id @default(autoincrement())
+  Descripcio String?
+  IdTipoControlRecall Int
+  Inactivo DateTime?
+  TratAgdOblig Boolean
+  Guid_Tenant String
+  TipoComunicaciones Int?
+  @@map("TMRecall")
+}
+
+/// GELITE: TPacPlan (11 rows)
+model Tpacplan {
+  DescPlan String @id
+  @@map("TPacPlan")
+}
+
+/// GELITE: TPaises (1 rows)
+model Tpaises {
+  IdPais Int @id @default(autoincrement())
+  Descripcio String?
+  IsoAlfa2 String?
+  IsoAlfa3 String?
+  IsoNum3 String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Normalizado Boolean
+  Guid_Tenant String
+  @@map("TPaises")
+}
+
+/// GELITE: TPluggin (2 rows)
+model Tpluggin {
+  IdPluggin Int @id @default(autoincrement())
+  Descripcio String
+  Fichero String
+  TipoPlg String
+  Area String
+  Codigo String
+  Version String
+  FecAlta DateTime
+  Nombre_RTM String?
+  SQL_RTM String?
+  Tabla String?
+  CampoFecha String?
+  Layout Int?
+  IdTipoEspec Int?
+  PlazoValidez Int
+  Estructura String?
+  Idioma String?
+  @@map("TPluggin")
+}
+
+/// GELITE: TPoblaci (181 rows)
+model Tpoblaci {
+  IdPoblacio Int @id @default(autoincrement())
+  Descripcio String?
+  IdProvin Int?
+  IdPais Int?
+  CodINE String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Normalizado Boolean
+  Guid_Tenant String
+  @@map("TPoblaci")
+}
+
+/// GELITE: TProfesi (37 rows)
+model Tprofesi {
+  IdProfesio Int @id @default(autoincrement())
+  Descripcio String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TProfesi")
+}
+
+/// GELITE: TProte (1 rows)
+model Tprote {
+  IdProte Int @id @default(autoincrement())
+  Nombre String?
+  Apellidos String?
+  Laboratori String?
+  NIF String?
+  Direccion String?
+  IdPoblacio Int?
+  Tel1 String?
+  Tel2 String?
+  TelMovil String?
+  Fax String?
+  Email String?
+  Web String?
+  CP String?
+  InformeRPT Int?
+  LimitArt String?
+  FechaBaja DateTime?
+  TipoDocIdent Int
+  IdPaisIdent Int?
+  GuidCentroDentBox String?
+  DescLaboratorioDentBox String?
+  DescClienteLaboratorioDentBox String?
+  NIFClienteLaboratorioDentBox String?
+  Guid_Tenant String
+  @@map("TProte")
+}
+
+/// GELITE: TProvin (62 rows)
+model Tprovin {
+  IdProvin Int @id @default(autoincrement())
+  Descripcio String?
+  CodPro String?
+  IdPais Int?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Normalizado Boolean
+  Guid_Tenant String
+  @@map("TProvin")
+}
+
+/// GELITE: TransaccionTratamiento (7 rows)
+model Transacciontratamiento {
+  Id Int @id @default(autoincrement())
+  IdPac Int
+  IdCli Int
+  IdCentro Int
+  IdEstado Int
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  f_version Int @map("_version")
+  IdMotivoAnulacion Int?
+  ObsMotivoAnulacion String?
+  NumBoleta Int?
+  IdTarifa Int?
+  IdCol Int?
+  Importe Decimal
+  Devuelto Decimal
+  IdCCDiagnostico Int?
+  Id_UserAutorizaAnulacion Int?
+  FechaLimiteAnulacion DateTime?
+  NumBoletaAfecta Int?
+  TipoTransaccion Int?
+  IdForPago Int?
+  NumReferencia String?
+  TransaccionOrderId String?
+  AuthNumber_OLD String?
+  Currency String?
+  Metadata_OLD String?
+  Timestamp_OLD String?
+  PayerReference_OLD String?
+  CardReference_OLD String?
+  AmountDCC_OLD String?
+  CurrencyDCC_OLD String?
+  Exchange_OLD Decimal?
+  ResponseCode String?
+  ResponseStatus String?
+  paymentMethod String?
+  merchantParameters String?
+  paymentProductId String?
+  fraudServiceResult String?
+  payment_id String?
+  payment_status String?
+  statusCategory String?
+  statusCode Int?
+  isCancellable Boolean?
+  isAuthorized Boolean?
+  isRefundable Boolean?
+  paymentStatusCategory String?
+  status String?
+  RETURNMAC String?
+  invalidTokens String?
+  redirectUrl String?
+  partialRedirectUrl String?
+  Resp_AID String?
+  Resp_ARC String?
+  Resp_ATC String?
+  Resp_PSN String?
+  Resp_Authorization String?
+  Resp_CardBank String?
+  Resp_CardHolder String?
+  Resp_CardIssuer String?
+  Resp_CardNumber String?
+  Resp_CardTechnology Int?
+  Resp_CardType String?
+  Resp_Date String?
+  Resp_Time String?
+  Resp_Language String?
+  Resp_Location String?
+  Resp_MerchantId String?
+  Resp_MerchantName String?
+  Resp_OriginalTransactionId String?
+  Resp_OriginalTransactionDate String?
+  Resp_PinIndicator Int?
+  Resp_SignatureIndicator Int?
+  Resp_SignatureImage String?
+  Resp_TerminalId String?
+  Resp_Type String?
+  Terminal String?
+  Guid_Tenant String
+  @@map("TransaccionTratamiento")
+}
+
+/// GELITE: Tratamientos (628 rows)
+model Tratamientos {
+  IdTratamiento Int @id @default(autoincrement())
+  Codigo String
+  DescripMed String
+  DescripPac String?
+  DescripAgd String
+  CodInt String?
+  IdTipoODG Int
+  IdTipoEspec Int?
+  IdEspecOMC Int?
+  IdGrupo Int?
+  IdTipoStd Int?
+  NumFases Int?
+  Duracion Int?
+  Piezas Int
+  Guia Boolean
+  Actos Int?
+  LimitNDias Int?
+  LimitNActos Int?
+  TipoLimitacion Int
+  SoloPresupuestos Int
+  NoPlanificable Int
+  AgdPrimeraVisita Int
+  DesglosaFases Int
+  ConGarantia Int
+  PrecioReferencia Decimal?
+  IdIcono Int?
+  Inactivo DateTime?
+  Desde DateTime
+  Hasta DateTime?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  GeneraTrabajoProtesis Int
+  AgdOnline Int
+  NoDesglosarPresu Int
+  Cuotas Int
+  TipoCalcFase Int
+  GUID String?
+  Id_VisitReason Int?
+  Id_ResourcePlan Int?
+  Id_TipoPresupuesto Int?
+  TipoEnvioProtesico Int
+  Id_TipoColab Int?
+  PlanEcoTratamInicial Boolean
+  PlanEcoTratamCuota Boolean
+  Guid_Tenant String
+  Id_TMRecall Int?
+  @@map("Tratamientos")
+}
+
+/// GELITE: Tratamientos_Tarifas (646 rows)
+model TratamientosTarifas {
+  IdTratamientoTarifa Int @id @default(autoincrement())
+  IdTratamiento Int
+  IdTarifa Int
+  IdTipoEspec Int
+  IdGrupo Int
+  CodTto String?
+  CodInt String?
+  Autoriz String
+  Inactivo DateTime?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  IdCCGrupo Int?
+  IdCCBeneficioAdicional Int?
+  Guid_Tenant String
+  @@map("Tratamientos_Tarifas")
+}
+
+/// GELITE: Tratamientos_Tarifas_Precios (639 rows)
+model TratamientosTarifasPrecios {
+  IdTratamientoTarifaPrecio Int @id @default(autoincrement())
+  Fecha DateTime
+  IdTratamientoTarifa Int
+  PrecioPrivado Decimal
+  PrecioVariable Int
+  PrecioMutua Decimal
+  PrecioColaborador Decimal
+  CargoMutua Int
+  Inactivo DateTime?
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  PrecioMinimo Decimal
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("Tratamientos_Tarifas_Precios")
+}
+
+/// GELITE: TratamientosFases (628 rows)
+model Tratamientosfases {
+  IdTratamientoFase Int @id @default(autoincrement())
+  IdTratamiento Int
+  DescripMed String
+  Observaciones String?
+  Duracion Int
+  TpcFacturar Decimal
+  MinDias Int
+  MaxDias Int
+  OrdenEjecucion Int
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  DuracionBase Int
+  DuracionPorRango Boolean
+  IdIcono Int?
+  Guid_Tenant String
+  @@map("TratamientosFases")
+}
+
+/// GELITE: TReclamaPago (2 rows)
+model Treclamapago {
+  IdTipo Int @id @default(autoincrement())
+  Descripcio String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TReclamaPago")
+}
+
+/// GELITE: TRegApun (15 rows)
+model Tregapun {
+  IdTRegApun Int @id @default(autoincrement())
+  Descripcio String?
+  @@map("TRegApun")
+}
+
+/// GELITE: TRRecall (4 rows)
+model Trrecall {
+  IdTRRecall Int @id @default(autoincrement())
+  Descripcion String
+  RealizarRecall Boolean
+  IdTipoAccion Int
+  Inactivo DateTime?
+  ParaTodosMotivos Boolean
+  Guid_Tenant String
+  @@map("TRRecall")
+}
+
+/// GELITE: TRRecall_TMRecall (40 rows)
+model TrrecallTmrecall {
+  Id Int @id @default(autoincrement())
+  Id_TRRecall Int
+  Id_TMRecall Int
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TRRecall_TMRecall")
+}
+
+/// GELITE: TSeries (58 rows)
+model Tseries {
+  Doc String
+  IdEmisor Int
+  Serie String
+  Anyo Int
+  Ultimo Int?
+  Activo String?
+  Id Int @id @default(autoincrement())
+  CodigoValidacion String?
+  Guid_Tenant String
+  @@map("TSeries")
+}
+
+/// GELITE: TSitCal (8 rows)
+model Tsitcal {
+  IdSit Int @id @default(autoincrement())
+  Descripcio String?
+  Color Int?
+  FlgLab String?
+  Inactivo DateTime?
+  AOOnline DateTime?
+  @@map("TSitCal")
+}
+
+/// GELITE: TSitCalH (8 rows)
+model Tsitcalh {
+  IdSit Int
+  HIni Int
+  HFin Int
+  @@id([IdSit, HIni, HFin])
+  @@map("TSitCalH")
+}
+
+/// GELITE: TSitCita (10 rows)
+model Tsitcita {
+  IdSitC Int @id @default(autoincrement())
+  Descripcio String?
+  Color Int?
+  FlgPizarra String?
+  FlgHoraLlegada String?
+  FlgHoraConsulta String?
+  FlgHoraFinal String?
+  FlgFallo String?
+  FlgAnulada String?
+  FlgVisible String?
+  Orden Int?
+  DuracMaxEstanc Int?
+  FlgColorFont String?
+  FlgColorShape String?
+  IdSitCNueva Int?
+  TiempoTransicion Int?
+  IdTipoSitCita Int
+  @@map("TSitCita")
+}
+
+/// GELITE: TSubFams (1 rows)
+model Tsubfams {
+  IdFamilia Int
+  IdSubFamilia Int @id @default(autoincrement())
+  Descripcio String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TSubFams")
+}
+
+/// GELITE: TSubTipoAntecedentes (111 rows)
+model Tsubtipoantecedentes {
+  IdSubTipoAnt Int @id @default(autoincrement())
+  IdTipoAnt Int
+  Descripcion String?
+  Agrupado Boolean?
+  VDM_Id Int?
+  Guid_Tenant String
+  @@map("TSubTipoAntecedentes")
+}
+
+/// GELITE: TTipoAntecedentes (9 rows)
+model Ttipoantecedentes {
+  IdTipoAnt Int @id @default(autoincrement())
+  Descripcion String?
+  Orden Int
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TTipoAntecedentes")
+}
+
+/// GELITE: TTipoColab (1 rows)
+model Ttipocolab {
+  IdTipoColab Int @id @default(autoincrement())
+  Descripcio String
+  RolPpal Boolean
+  RolSec Boolean
+  RolAux Boolean
+  RolAlumno Boolean
+  RolProfesor Boolean
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  Guid_Tenant String
+  @@map("TTipoColab")
+}
+
+/// GELITE: TTipoIVA (8 rows)
+model Ttipoiva {
+  Descripcio String
+  IVA Float
+  Inactivo DateTime?
+  SCCodSCtaFRA String?
+  SCCodSCtaGAS String?
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  IdTipoIVA Int @id @default(autoincrement())
+  Guid_Tenant String
+  @@map("TTipoIVA")
+}
+
+/// GELITE: TTipoOdg (39 rows)
+model Ttipoodg {
+  IdTipoOdg Int @id @default(autoincrement())
+  Tipo Int
+  Descripcio String?
+  IdGrupo Int?
+  Guid_Tenant String
+  @@map("TTipoOdg")
+}
+
+/// GELITE: TTipoParametros (4 rows)
+model Ttipoparametros {
+  IdTipoParam Int @id @default(autoincrement())
+  Descripcio String?
+  @@map("TTipoParametros")
+}
+
+/// GELITE: TtosMed (56,775 rows)
+model Ttosmed {
+  IdPac Int
+  NumTto Int
+  IdTto Int?
+  ZonasBoca Int?
+  PiezasAdu Decimal?
+  PiezasLec Decimal?
+  PiezasNum Decimal?
+  ZonasPieza Decimal?
+  DespX Int?
+  DespY Int?
+  Rotacion Int?
+  StaTto Int?
+  FecIni DateTime?
+  FecFin DateTime?
+  IdCol Int?
+  Notas String?
+  Importe Decimal?
+  Dto Int?
+  Pendiente Float?
+  IdTipoOdg Int?
+  Actos Int?
+  Tiempo Int?
+  IdCli Int?
+  Ident Int @id @default(autoincrement())
+  Autoriz String?
+  NumFinan String?
+  IdUser Int?
+  Comodin1 String?
+  IdColAux Int?
+  Edu10 Int?
+  Edu11 Int?
+  Edu12 Int?
+  Edu13 Int?
+  Edu14 Int?
+  Edu20 Int?
+  Edu21 Int?
+  Edu22 Int?
+  Edu23 Int?
+  Edu24 Int?
+  TipoOperac Int?
+  CampoAux1 String?
+  CampoAux2 String?
+  CampoAux3 String?
+  CampoAux4 String?
+  CampoAux5 String?
+  CampoAux6 String?
+  SesRealiz Int?
+  FechaCaduc DateTime?
+  f_fechareg DateTime? @map("_fechareg")
+  IdRef Int?
+  IdProced Int?
+  IdTipoEspec Int?
+  NumDocUnico String?
+  IdCentro Int?
+  IdEmisor Int?
+  ImporteDto Decimal?
+  IdColValida Int?
+  FechaValida DateTime?
+  UniqueID Int?
+  f_version Int @map("_version")
+  IdPresuTto Int?
+  DescTarifaConector String?
+  ImportePrivado Decimal?
+  ImporteMutua Decimal?
+  IdUserEdit Int?
+  f_fecharegEdit DateTime @map("_fecharegEdit")
+  NFacturaEl String?
+  NumTransaccion Int?
+  IdDevolucionTransaccion Int?
+  IdPlanEcoCuota Int?
+  IdCCDiagnostico Int?
+  Cuadrantes Decimal?
+  Arcadas Decimal?
+  FecExpoCp DateTime?
+  Guid_Tenant String
+  CId String
+  @@map("TtosMed")
+}
+
+/// GELITE: TtosMed_PagoCli (39 rows)
+model TtosmedPagocli {
+  Id Int @id @default(autoincrement())
+  IdPagoCli Int
+  IdTtosMed Int
+  Reservado Decimal
+  Consumido Decimal
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  f_iduser Int @map("_iduser")
+  NumTransaccion Int?
+  Guid_Tenant String
+  @@map("TtosMed_PagoCli")
+}
+
+/// GELITE: TtosMedFases (46,035 rows)
+model Ttosmedfases {
+  IdTtosMedFase Int @id @default(autoincrement())
+  IdTtosMed Int?
+  IdTratamientoFase Int?
+  NumFase Int
+  Estado Int
+  Fecha DateTime
+  Notas String?
+  TpcFacturar Decimal
+  f_fechareg DateTime @map("_fechareg")
+  f_version Int @map("_version")
+  IdLiqComisionDet Int?
+  IdCol Int?
+  IdColAux Int?
+  Guid_Tenant String
+  @@map("TtosMedFases")
+}
+
+/// GELITE: TTratamientos (956 rows)
+model Ttratamientos {
+  IdPac Int
+  IdTrat Int @id @default(autoincrement())
+  Dosificacion String?
+  FecIns DateTime?
+  Fecha DateTime?
+  IdUsu Int
+  Publico String
+  IdFarmaco Int?
+  DescFarmaco String?
+  FecFin DateTime?
+  IdTipoEspec Int?
+  Observac String?
+  IdCentro Int?
+  IdVisita Int?
+  Tipo Int?
+  Dosis String?
+  ViaAdmin String?
+  Frecuencia String?
+  CId String?
+  Guid_Tenant String
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TTratamientos")
+}
+
+/// GELITE: TUCentros (9 rows)
+model Tucentros {
+  IdUser Int
+  IdPerfil Int
+  f_fechareg DateTime @map("_fechareg")
+  Inactiva String?
+  Guid_Tenant String
+  @@id([IdUser, IdPerfil])
+  @@map("TUCentros")
+}
+
+/// GELITE: TUPerfil (7 rows)
+model Tuperfil {
+  IdPerfil Int @id @default(autoincrement())
+  Descripcio String?
+  IdCentro Int?
+  CodInt String?
+  PersonalExterno Boolean
+  Guid_Tenant String
+  @@map("TUPerfil")
+}
+
+/// GELITE: TUsers (11 rows)
+model Tusers {
+  IdUser Int @id @default(autoincrement())
+  Login String
+  Pass String?
+  Nombre String?
+  Apellidos String?
+  NIF String?
+  Email String?
+  Telef String?
+  UsrRido String?
+  DirRptExp String?
+  RptGeneral Boolean
+  FecPass DateTime?
+  IdPerfil Int
+  OcultarPac Boolean
+  OcultarPa2 Boolean?
+  IdCol Int?
+  FecDActiva DateTime?
+  FecHActiva DateTime?
+  UsrBloq Boolean?
+  IdTipoEspec Int?
+  IdEmisor Int?
+  IdGrupo Int?
+  AdmGrupo String?
+  f_fechareg DateTime @map("_fechareg")
+  CodInt String?
+  PendienteResetear Boolean?
+  Guid String
+  TipoDocIdent Int
+  IdPaisIdent Int?
+  Password String
+  Guid_DefaultCenter String?
+  Custom Boolean
+  Guid_ExternalUserDomain String?
+  Guid_Tenant String
+  BannerDentIANoMostrar DateTime?
+  @@map("TUsers")
+}
+
+/// GELITE: TUsuAgd (12 rows)
+model Tusuagd {
+  IdUsu Int @id @default(autoincrement())
+  Descripcio String?
+  CodExt String?
+  MinFrac Int?
+  IdCal Int?
+  IdGrUsu Int?
+  Status Int?
+  BOX String?
+  IdOpcDef String?
+  Nota String?
+  IdBox Int?
+  IdCol Int?
+  IdTipoEspec Int?
+  AOOnLine String?
+  AOFecPubDesde DateTime?
+  AOFecPubHasta DateTime?
+  AOAgdGUID String?
+  AODescripcio String?
+  IdOpcDefWeb String?
+  IdCentro Int?
+  IdTipoAgenda Int
+  ActivarControlAgenda Int?
+  ColMan Int?
+  ColTar Int?
+  AOTipoTratamiento Int
+  VentanaCitacion Int?
+  BloqueosAutomaticos Boolean
+  DuracionBloqueos Int
+  Id_MotivoBloqueos Int?
+  EnviarRecordatorio DateTime?
+  EnviarConfirmacion DateTime?
+  @@map("TUsuAgd")
+}
+
+/// GELITE: TUsuAOpc (93 rows)
+model Tusuaopc {
+  IdUsu Int
+  IdOpc String
+  Descripcio String?
+  Imagen Bytes?
+  Duracion Int?
+  LIMITADO String?
+  LIMMATI Int?
+  LIMTARDA Int?
+  ImagenTxt String?
+  DCitasGrp String?
+  CantIntegGrp Int?
+  Color Int?
+  NotaTto String?
+  AOOnLine String?
+  TipoLimitacion Int
+  IdIcono Int?
+  Disponible DateTime?
+  SinBloqueosAutomaticos Boolean
+  @@id([IdUsu, IdOpc])
+  @@map("TUsuAOpc")
+}
+
+/// GELITE: TUsuAOpcTtosSugeridos (6 rows)
+model Tusuaopcttossugeridos {
+  Id Int @id @default(autoincrement())
+  IdOpc String
+  IdTratamiento Int
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  @@map("TUsuAOpcTtosSugeridos")
+}
+
+/// GELITE: TxtPrede (1 rows)
+model Txtprede {
+  IdTxt Int @id @default(autoincrement())
+  Texto String
+  TextoRich String
+  Tipo Int
+  Titulo String?
+  Guid_Tenant String
+  @@map("TxtPrede")
+}
+
+/// GELITE: UserCola (19 rows)
+model Usercola {
+  IdCol Int
+  IdUser Int
+  @@id([IdCol, IdUser])
+  @@map("UserCola")
+}
+
+/// GELITE: UserEspec (8 rows)
+model Userespec {
+  IdTipoEspec Int
+  IdUser Int
+  Guid_Tenant String
+  @@id([IdTipoEspec, IdUser])
+  @@map("UserEspec")
+}
+
+/// GELITE: Widgets (39 rows)
+model Widgets {
+  Id Int @id @default(autoincrement())
+  f_version Int @map("_version")
+  f_fechaReg DateTime @map("_fechaReg")
+  f_idUserReg Int @map("_idUserReg")
+  f_fechaModif DateTime @map("_fechaModif")
+  f_idUserModif Int @map("_idUserModif")
+  ExternalId String
+  Name String
+  Description String?
+  JsonProperties String
+  JsonVersion Int
+  Custom Boolean
+  Activo Boolean
+  @@map("Widgets")
+}
