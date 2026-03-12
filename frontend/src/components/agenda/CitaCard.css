@@ -1,0 +1,303 @@
+/* ═══════════════════════════════════════════════════════
+   CitaCard — Tarjeta de cita para el grid de agenda
+   Colores corporativos: navy #002855, teal #0056b3
+   ═══════════════════════════════════════════════════════ */
+
+.cita-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    border-left: 3px solid var(--cita-color, #0056b3);
+    background: var(--cita-bg, #f0f7ff);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'Inter', sans-serif;
+    min-height: 22px;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.cita-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 40, 85, 0.12);
+    transform: translateY(-1px);
+}
+
+.cita-card--anulada {
+    opacity: 0.45;
+    --cita-color: #e03555;
+    --cita-bg: #fff5f5;
+}
+
+.cita-card--finalizada {
+    opacity: 0.6;
+    --cita-color: #94a3b8;
+    --cita-bg: #f8fafc;
+}
+
+.cita-card--confirmada {
+    --cita-color: #002855;
+    --cita-bg: #e8f0fe;
+}
+
+.cita-card--planificada {
+    --cita-color: #0056b3;
+    --cita-bg: #f0f7ff;
+}
+
+.cita-card--en_sala {
+    --cita-color: #f59e0b;
+    --cita-bg: #fffbeb;
+    animation: pulse-soft 3s infinite ease-in-out;
+}
+
+.cita-card--en_consulta {
+    --cita-color: #22c55e;
+    --cita-bg: #f0fdf4;
+}
+
+.cita-card--cancelada {
+    opacity: 0.45;
+    --cita-color: #e03555;
+    --cita-bg: #fff5f5;
+}
+
+/* ── Estado icono ── */
+.cita-estado {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--cita-color, #0056b3);
+}
+
+.cita-estado--planificada {
+    background: transparent;
+    border: 2px solid #0056b3;
+}
+
+.cita-estado--confirmada {
+    background: #002855;
+}
+
+.cita-estado--en_sala {
+    background: #f59e0b;
+}
+
+.cita-estado--en_consulta {
+    background: #22c55e;
+}
+
+.cita-estado--finalizada {
+    background: #94a3b8;
+}
+
+.cita-estado--anulada,
+.cita-estado--cancelada {
+    background: #e03555;
+}
+
+/* ── Info ── */
+.cita-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+}
+
+.cita-numpac {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    background: #002855;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+}
+
+.cita-nombre {
+    font-size: 13px;
+    font-weight: 700;
+    color: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.cita-tratamiento {
+    font-size: 11px;
+    font-weight: 500;
+    color: inherit;
+    opacity: 0.85;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.cita-notas {
+    font-size: 11px;
+    color: inherit;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.cita-telefono {
+    font-size: 11px;
+    color: inherit;
+    opacity: 0.8;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+/* ── WhatsApp button ── */
+.cita-whatsapp {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: none;
+    background: #25d366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    padding: 0;
+}
+
+.cita-whatsapp:hover {
+    background: #128c7e;
+    transform: scale(1.1);
+}
+
+.cita-whatsapp:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.cita-whatsapp:disabled:hover {
+    transform: none;
+}
+
+/* ── Colisión (múltiples citas) ── */
+.cita-collision-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.cita-collision-badge {
+    font-size: 9px;
+    font-weight: 700;
+    color: #f59e0b;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 4px;
+    padding: 1px 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.cita-collision-badge:hover {
+    background: #fef3c7;
+}
+
+/* ── Tooltip ── */
+.cita-tooltip {
+    position: absolute;
+    z-index: 50;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    padding: 8px 10px;
+    min-width: 200px;
+    max-width: 300px;
+    font-size: 11px;
+}
+
+.cita-tooltip-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.cita-tooltip-item:last-child {
+    border-bottom: none;
+}
+
+/* ── Expand panel ── */
+.cita-expand-panel {
+    position: absolute;
+    z-index: 40;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* ── Skeleton loading ── */
+.cita-skeleton {
+    height: 22px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ── Week view badge ── */
+.cita-week-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    background: #002855;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 0 3px;
+}
+
+.cita-week-badge--empty {
+    background: transparent;
+}

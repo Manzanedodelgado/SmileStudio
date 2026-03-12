@@ -1,0 +1,413 @@
+{
+    "_meta": {
+        "generado": "2026-03-01",
+        "version": "1.0",
+        "descripcion": "Mapa definitivo de relaciones Frontend <-> Backend tras auditoría completa",
+        "fase": "Post-Auditoría (Fase 2 completada)"
+    },
+    "supabase_nativas": {
+        "descripcion": "Tablas creadas por el proyecto web, con lectura y escritura completa",
+        "tablas": {
+            "citas_web": {
+                "servicio": "services/citas.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT",
+                    "PATCH",
+                    "soft-DELETE"
+                ],
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx"
+                ],
+                "rpc_relacionadas": [
+                    "reserve_slot"
+                ],
+                "notas": "Tabla puente — citas nativas web + overrides sobre GELITE"
+            },
+            "soap_notes": {
+                "servicio": "services/soap.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT",
+                    "PATCH",
+                    "DELETE"
+                ],
+                "vistas_consumidoras": [
+                    "views/Pacientes.tsx",
+                    "components/pacientes/SOAPEditor.tsx"
+                ],
+                "notas": "Historia clínica SOAP creada desde la web"
+            },
+            "odontograma_web": {
+                "servicio": "services/odontograma.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "RPC-upsert"
+                ],
+                "vistas_consumidoras": [
+                    "components/pacientes/Odontograma.tsx"
+                ],
+                "rpc_relacionadas": [
+                    "upsert_odontograma"
+                ],
+                "notas": "Estado del odontograma por paciente como JSONB"
+            },
+            "catalogo_tratamientos": {
+                "servicio": "services/tratamientos.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "components/pacientes/SOAPEditor.tsx",
+                    "views/Agenda.tsx"
+                ],
+                "notas": "Catálogo de tratamientos web (distinto de FDW IconoTratAgenda)"
+            },
+            "config_agenda_web": {
+                "servicio": "services/config-agenda.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT",
+                    "PATCH"
+                ],
+                "vistas_consumidoras": [
+                    "views/ConfiguracionAgenda.tsx"
+                ],
+                "rpc_relacionadas": [],
+                "notas": "Configuración de doctores/horarios guardada como JSONB"
+            },
+            "chat_history": {
+                "servicio": "services/ia-dental.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT"
+                ],
+                "vistas_consumidoras": [
+                    "views/ia/IAConfig.tsx"
+                ],
+                "notas": "Historial de conversaciones con IA Dental"
+            },
+            "audit_log": {
+                "servicio": "services/audit.service.ts",
+                "operaciones": [
+                    "INSERT",
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "todos los servicios (fire-and-forget)"
+                ],
+                "notas": "RGPD Art.30 — registro de accesos y modificaciones"
+            },
+            "stock_ajustes_pendientes": {
+                "servicio": "services/inventario.service.ts",
+                "operaciones": [
+                    "INSERT",
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Inventario.tsx"
+                ],
+                "notas": "Ledger de ajustes de stock — evita escribir FDW directamente"
+            },
+            "patient_medications": {
+                "servicio": "services/supabase.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT/PATCH",
+                    "DELETE"
+                ],
+                "vistas_consumidoras": [
+                    "views/Pacientes.tsx (AlertasPanel/SOAPEditor)"
+                ],
+                "bugs_conocidos": [
+                    "upsertMedication usa cabecera en lugar de URL para filtro PATCH — ver INCO-04"
+                ],
+                "notas": "Medicaciones activas del paciente"
+            },
+            "patient_allergies": {
+                "servicio": "services/supabase.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT/PATCH",
+                    "DELETE"
+                ],
+                "vistas_consumidoras": [
+                    "views/Pacientes.tsx (AlertasPanel)"
+                ],
+                "notas": "Alergias conocidas del paciente"
+            }
+        }
+    },
+    "fdw_gelite": {
+        "descripcion": "Foreign Data Wrapper sobre SQL Server GELITE — solo lectura recomendada",
+        "tablas": {
+            "Pacientes": {
+                "servicio": "services/pacientes.service.ts",
+                "operaciones": [
+                    "SELECT-paginado",
+                    "INSERT*",
+                    "PATCH*",
+                    "DELETE*"
+                ],
+                "vistas_consumidoras": [
+                    "views/Pacientes.tsx",
+                    "components/pacientes/PatientSearchModal.tsx"
+                ],
+                "notas": "(*) INSERT/PATCH/DELETE sobre FDW — puede tener limitaciones. La caché se invalida a los 5min."
+            },
+            "DCitas": {
+                "servicio": "services/citas.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx"
+                ],
+                "notas": "Agenda GELITE — SOLO LECTURA. Las modificaciones van a citas_web."
+            },
+            "TtosMed": {
+                "servicio": "services/citas.service.ts (getEntradasMedicas)",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "components/pacientes/SOAPEditor.tsx"
+                ],
+                "notas": "Historial clínico real de GELITE — solo EntradaMedicaTratamiento"
+            },
+            "PRESUTTO": {
+                "servicio": "services/citas.service.ts (getTratamientosPaciente)",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "components/pacientes/Economica.tsx"
+                ],
+                "notas": "Presupuestos GELITE agrupados por Id_Presu"
+            },
+            "TColabos": {
+                "servicio": "services/citas.service.ts (getColaboradorNombre), services/agenda-config.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx",
+                    "views/ConfiguracionAgenda.tsx"
+                ],
+                "notas": "Catálogo de colaboradores/doctores. Caché en memoria."
+            },
+            "TArticulo": {
+                "servicio": "services/inventario.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Inventario.tsx"
+                ],
+                "notas": "Artículos de inventario — SOLO LECTURA desde web"
+            },
+            "StckMov": {
+                "servicio": "services/inventario.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT*"
+                ],
+                "vistas_consumidoras": [
+                    "views/Inventario.tsx"
+                ],
+                "notas": "(*) addLote escribe sobre StckMov FDW directamente — puede ser problemático"
+            },
+            "NV_CabFactura": {
+                "servicio": "services/facturacion.service.ts",
+                "operaciones": [
+                    "SELECT",
+                    "INSERT*"
+                ],
+                "vistas_consumidoras": [
+                    "views/Gestoria.tsx"
+                ],
+                "notas": "Facturas GELITE"
+            },
+            "BancoMov": {
+                "servicio": "services/facturacion.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Gestoria.tsx"
+                ],
+                "notas": "Movimientos bancarios GELITE"
+            },
+            "IconoTratAgenda": {
+                "servicio": "services/agenda-config.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx",
+                    "views/ConfiguracionAgenda.tsx"
+                ],
+                "notas": "Tipos de tratamiento para agenda"
+            },
+            "TSitCita": {
+                "servicio": "services/agenda-config.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx"
+                ],
+                "notas": "Estados de cita"
+            },
+            "TUsuAgd": {
+                "servicio": "services/agenda-config.service.ts",
+                "operaciones": [
+                    "SELECT"
+                ],
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx",
+                    "views/ConfiguracionAgenda.tsx"
+                ],
+                "notas": "Usuarios asignados a la agenda (filtrado: Visible !== 'N')"
+            }
+        }
+    },
+    "rpcs_supabase": {
+        "descripcion": "Funciones PostgreSQL personalizadas accesibles via REST v1/rpc/",
+        "rpc": {
+            "app_login": {
+                "servicio": "services/auth.service.ts",
+                "entrada": {
+                    "p_email": "string",
+                    "p_password": "string"
+                },
+                "salida": {
+                    "token": "string",
+                    "expires_at": "string",
+                    "user": "object"
+                },
+                "vistas_consumidoras": [
+                    "views/Login.tsx"
+                ],
+                "notas": "Login custom sin GoTrue — bcrypt server-side"
+            },
+            "validate_token": {
+                "servicio": "services/auth.service.ts",
+                "entrada": {
+                    "p_token": "string"
+                },
+                "salida": {
+                    "valid": "boolean",
+                    "user": "object"
+                },
+                "vistas_consumidoras": [
+                    "context/AuthContext.tsx"
+                ],
+                "notas": "Validación TTL server-side. Se llama en cada carga de la app."
+            },
+            "revoke_token": {
+                "servicio": "services/auth.service.ts",
+                "entrada": {
+                    "p_token": "string"
+                },
+                "salida": {},
+                "vistas_consumidoras": [
+                    "context/AuthContext.tsx (logout)"
+                ],
+                "notas": "Logout real — invalida el token en la BD"
+            },
+            "reserve_slot": {
+                "servicio": "services/citas.service.ts",
+                "entrada": {
+                    "p_num_pac": "string|null",
+                    "p_nombre": "string",
+                    "p_fecha": "date",
+                    "p_hora": "time",
+                    "p_duracion": "int",
+                    "p_tratamiento": "string",
+                    "p_doctor": "string",
+                    "p_gabinete": "string",
+                    "p_notas": "string"
+                },
+                "salida": {
+                    "id": "uuid"
+                },
+                "vistas_consumidoras": [
+                    "views/Agenda.tsx"
+                ],
+                "notas": "Locking pesimista — SELECT FOR UPDATE + INSERT atómico"
+            },
+            "upsert_odontograma": {
+                "servicio": "services/odontograma.service.ts",
+                "entrada": {
+                    "p_num_pac": "string",
+                    "p_datos": "json"
+                },
+                "salida": {},
+                "vistas_consumidoras": [
+                    "components/pacientes/Odontograma.tsx"
+                ],
+                "notas": "ON CONFLICT DO UPDATE — elimina race condition SELECT-then-INSERT"
+            }
+        }
+    },
+    "apis_externas": {
+        "groq_api": {
+            "servicio": "services/ia-dental.service.ts",
+            "url": "https://api.groq.com/openai/v1/chat/completions",
+            "env_var": "VITE_GROQ_API_KEY",
+            "modelo": "llama-3.3-70b-versatile",
+            "vistas_consumidoras": [
+                "views/ia/IAConfig.tsx",
+                "components/pacientes/Odontograma.tsx"
+            ]
+        },
+        "evolution_api": {
+            "servicio": "services/evolution.service.ts",
+            "url": "VITE_EVOLUTION_API_URL",
+            "env_vars": [
+                "VITE_EVOLUTION_API_URL",
+                "VITE_EVOLUTION_API_KEY",
+                "VITE_EVOLUTION_INSTANCE"
+            ],
+            "vistas_consumidoras": [
+                "views/Whatsapp.tsx",
+                "views/ia/Plantillas.tsx"
+            ]
+        },
+        "chatwoot_api": {
+            "servicio": "services/evolution.service.ts",
+            "url": "VITE_CHATWOOT_URL",
+            "env_vars": [
+                "VITE_CHATWOOT_URL",
+                "VITE_CHATWOOT_TOKEN",
+                "VITE_CHATWOOT_ACCOUNT_ID",
+                "VITE_CHATWOOT_INBOX_ID"
+            ],
+            "vistas_consumidoras": [
+                "views/Whatsapp.tsx"
+            ]
+        }
+    },
+    "servicios_sin_uso_verificado": {
+        "nota": "Estos servicios existen pero no se ha verificado qué vistas los consumen — ver REVIEW-006",
+        "lista": [
+            "services/gmail.service.ts",
+            "services/gdrive.service.ts",
+            "services/romexis.service.ts",
+            "services/invoice-parser.service.ts"
+        ]
+    },
+    "problemas_detectados": {
+        "duplicados": [
+            "services/sara-ai.service.ts → 100% idéntico a ia-dental.service.ts",
+            "services/supabase.service.ts::sbFetch → duplica db.ts::dbFetch"
+        ],
+        "bugs": [
+            "services/supabase.service.ts::upsertMedication — filtro PATCH en headers en vez de URL"
+        ],
+        "tipos_huerfanos": [
+            "types.ts::Area → 'Configuración' no tiene vista ni ruta"
+        ]
+    }
+}

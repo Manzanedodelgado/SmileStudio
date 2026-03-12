@@ -1,47 +1,124 @@
-// ─── Appointments Service (Scaffold) ────────────────────
+// ─── Appointments Service — DCitas (GELITE) ─────────────
 import prisma from '../../config/database.js';
-import type { CreateAppointmentInput, UpdateAppointmentInput } from './appointments.schemas.js';
+
+// ── Helpers: GELITE integer date/time ↔ ISO ──────────────
+// GELITE guarda Fecha como entero YYYYMMDD y Hora como segundos desde medianoche
+
+const geliteDateToISO = (d: number | null | undefined): string | null => {
+    if (!d) return null;
+    const s = String(d);
+    if (s.length !== 8) return null;
+    return `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`;
+};
+
+const isoToGeliteDate = (iso: string): number => {
+    return parseInt(iso.replace(/-/g, ''), 10);
+};
+
+const geliteTimeToHHMM = (secs: number | null | undefined): string => {
+    if (!secs && secs !== 0) return '00:00';
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60);
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+};
+
+// ── Status mapping: GELITE IdSitC → string ───────────────
+const STATUS_MAP: Record<number, string> = {
+    0: 'scheduled',     // Planificada
+    1: 'confirmed',     // Confirmada
+    2: 'waiting',       // En sala espera
+    3: 'in_progress',   // En consulta
+    4: 'completed',     // Finalizada
+    5: 'no_show',       // No presentado
+    6: 'cancelled',     // Anulada
+    7: 'cancelled',     // Cancelada
+};
+
+// ── Transform DCitas row → API response ──────────────────
+const transformCita = (row: any) => {
+    // Extraer nombre del campo Texto (formato "APELLIDOS, Nombre")
+    let apellidos = '';
+    let nombre = '';
+    if (row.Texto) {
+        const parts = row.Texto.split(',');
+        apellidos = (parts[0] ?? '').trim();
+        nombre = (parts[1] ?? '').trim();
+    } else if (row.Contacto) {
+        apellidos = row.Contacto.trim();
+    }
+
+    return {
+        id: `${row.IdUsu}-${row.IdOrden}`,
+        numPac: row.NUMPAC ?? '',
+        apellidos,
+        nombre,
+        nombreCompleto: [nombre, apellidos].filter(Boolean).join(' ').toUpperCase() || 'PACIENTE',
+        fecha: geliteDateToISO(row.Fecha),
+        hora: geliteTimeToHHMM(row.Hora),
+        duracion: row.Duracion ? Math.round(row.Duracion / 60) : 30,    // GELITE guarda en segundos
+        estado: STATUS_MAP[row.IdSitC ?? 0] ?? 'scheduled',
+        tratamiento: '',    // Se resolverá con el IdOpc/IdTipoEspec si necesario
+        notas: row.NOTAS ?? '',
+        movil: row.Movil ?? '',
+        doctor: row.IdCol ?? null,
+        gabinete: row.IdUsu === 1 ? 'G1' : 'G2',
+        box: row.BOX ?? '',
+        idCol: row.IdCol,
+        idSitC: row.IdSitC,
+        idOpc: row.IdOpc,
+        contacto: row.Contacto ?? '',
+    };
+};
 
 export class AppointmentsService {
-    static async findAll(query: { date?: string; from?: string; to?: string; doctorId?: string; operatoryId?: string; status?: string; page?: string; limit?: string }) {
+    /**
+     * Lista citas de DCitas con filtros.
+     * Soporta: date (YYYY-MM-DD), from/to (rango), page, limit
+     */
+    static async findAll(query: {
+        date?: string;
+        from?: string;
+        to?: string;
+        page?: string;
+        limit?: string;
+    }) {
         const page = parseInt(query.page || '1');
-        const limit = parseInt(query.limit || '50');
+        const limit = parseInt(query.limit || '200');
         const skip = (page - 1) * limit;
         const where: any = {};
 
-        if (query.doctorId) where.doctorId = query.doctorId;
-        if (query.operatoryId) where.operatoryId = query.operatoryId;
-        if (query.status) where.status = query.status;
         if (query.date) {
-            const d = new Date(query.date);
-            where.startTime = { gte: d, lt: new Date(d.getTime() + 86400000) };
+            // Filtrar por día exacto
+            where.Fecha = isoToGeliteDate(query.date);
         } else if (query.from && query.to) {
-            where.startTime = { gte: new Date(query.from), lte: new Date(query.to) };
+            // Filtrar por rango de fechas
+            where.Fecha = {
+                gte: isoToGeliteDate(query.from),
+                lte: isoToGeliteDate(query.to),
+            };
         }
 
         const [data, total] = await Promise.all([
-            prisma.appointment.findMany({ where, skip, take: limit, orderBy: { startTime: 'asc' }, include: { patient: true, doctor: true, operatory: true } }),
-            prisma.appointment.count({ where }),
+            prisma.dcitas.findMany({
+                where,
+                skip,
+                take: limit,
+                orderBy: [{ Fecha: 'asc' }, { Hora: 'asc' }],
+            }),
+            prisma.dcitas.count({ where }),
         ]);
 
-        return { data, pagination: { page, limit, total, pages: Math.ceil(total / limit) } };
+        return {
+            data: data.map(transformCita),
+            pagination: { page, limit, total, pages: Math.ceil(total / limit) },
+        };
     }
 
-    static async findById(id: string) {
-        const appointment = await prisma.appointment.findUnique({ where: { id }, include: { patient: true, doctor: true, operatory: true } });
-        if (!appointment) throw new Error('Cita no encontrada');
-        return appointment;
-    }
-
-    static async create(input: CreateAppointmentInput) {
-        return prisma.appointment.create({ data: input, include: { patient: true, doctor: true, operatory: true } });
-    }
-
-    static async update(id: string, input: UpdateAppointmentInput) {
-        return prisma.appointment.update({ where: { id }, data: input, include: { patient: true, doctor: true, operatory: true } });
-    }
-
-    static async cancel(id: string) {
-        return prisma.appointment.update({ where: { id }, data: { status: 'cancelled' } });
+    static async findById(idUsu: number, idOrden: number) {
+        const row = await prisma.dcitas.findUnique({
+            where: { IdUsu_IdOrden: { IdUsu: idUsu, IdOrden: idOrden } },
+        });
+        if (!row) throw new Error('Cita no encontrada');
+        return transformCita(row);
     }
 }

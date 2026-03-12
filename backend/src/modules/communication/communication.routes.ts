@@ -1,38 +1,36 @@
-// ─── Communication Routes (Scaffold) ────────────────────
-// WhatsApp via Evolution API
+// ─── Communication Routes — Evolution API + Chatwoot ─────
 import { Router } from 'express';
 import { authenticate } from '../../middleware/auth.js';
 import { requirePermission } from '../../middleware/rbac.js';
+import { CommunicationController } from './communication.controller.js';
 
 const router = Router();
 
-// Webhook de Evolution API (NO requiere auth — lo llama Evolution)
-router.post('/webhook/evolution', (req, res) => {
-    // TODO: Recibir mensajes entrantes de WhatsApp
-    // → Pasar al agente IA para respuesta automática
-    // → Guardar en tabla messages
-    console.log('WhatsApp webhook:', JSON.stringify(req.body).substring(0, 200));
-    res.json({ success: true });
-});
+// ── Webhook (NO requiere auth — lo llama Evolution API) ──
+router.post('/webhook/evolution', CommunicationController.webhookEvolution);
 
-// Rutas autenticadas
+// ── Rutas autenticadas ────────────────────────────────────
 router.use(authenticate);
 
-// Enviar mensaje WhatsApp
-router.post('/whatsapp/send', requirePermission('comms:write'), (_req, res) => {
-    // TODO: Enviar mensaje vía Evolution API
-    res.json({ success: true, message: 'TODO: Enviar WhatsApp vía Evolution API' });
-});
+// WhatsApp — estado e instancia
+router.get('/whatsapp/status',        requirePermission('communication:read'),  CommunicationController.getStatus);
+router.get('/whatsapp/qr',            requirePermission('communication:read'),  CommunicationController.getQR);
 
-// Listar conversaciones
-router.get('/whatsapp/conversations', requirePermission('comms:read'), (_req, res) => {
-    res.json({ success: true, data: [], message: 'TODO: Listar conversaciones' });
-});
+// WhatsApp — envío
+router.post('/whatsapp/send',         requirePermission('communication:write'), CommunicationController.sendMessage);
+router.post('/whatsapp/send-template',requirePermission('communication:write'), CommunicationController.sendTemplate);
+router.post('/whatsapp/send-media',   requirePermission('communication:write'), CommunicationController.sendMedia);
 
-// Enviar recordatorio de cita
-router.post('/reminders/send', requirePermission('comms:write'), (_req, res) => {
-    // TODO: Enviar recordatorio de cita por WhatsApp
-    res.json({ success: true, message: 'TODO: Enviar recordatorio' });
-});
+// Recordatorios de cita
+router.post('/reminders/send',        requirePermission('communication:write'), CommunicationController.sendReminder);
+
+// Chatwoot — conversaciones
+router.get('/conversations',                    requirePermission('communication:read'),  CommunicationController.getConversations);
+router.get('/conversations/:id/messages',       requirePermission('communication:read'),  CommunicationController.getMessages);
+router.post('/conversations/:id/messages',      requirePermission('communication:write'), CommunicationController.replyMessage);
+router.patch('/conversations/:id/status',       requirePermission('communication:write'), CommunicationController.setConversationStatus);
+router.post('/conversations/:id/labels',        requirePermission('communication:write'), CommunicationController.addLabels);
+router.post('/conversations/:id/read',          requirePermission('communication:write'), CommunicationController.markRead);
+router.delete('/conversations/:id',             requirePermission('communication:write'), CommunicationController.deleteConversation);
 
 export default router;

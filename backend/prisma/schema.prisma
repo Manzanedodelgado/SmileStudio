@@ -3271,6 +3271,35 @@ model Widgets {
 }
 
 // ==========================================
+// AUTENTICACIÓN & USUARIOS (SMILESTUDIO)
+// ==========================================
+
+enum UserRole {
+  admin
+  doctor
+  hygienist
+  reception
+  accounting
+  auxiliary
+}
+
+model User {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String    @unique
+  password  String
+  name      String
+  role      UserRole  @default(auxiliary)
+  avatar    String?
+  specialty String?
+  active    Boolean   @default(true)
+  lastLogin DateTime?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+// ==========================================
 // MÓDULO IA & AUTOMATIZACIONES (SMILESTUDIO)
 // ==========================================
 
@@ -3476,4 +3505,153 @@ model GestModelosFiscales {
 
   @@unique([modelo, ejercicio, periodo])
   @@map("gest_modelos_fiscales")
+}
+
+// ==========================================
+// MÓDULO CLÍNICO — SMILESTUDIO NATIVE
+// ==========================================
+
+model Patient {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  dni          String?   @unique
+  phone        String
+  email        String?
+  dateOfBirth  DateTime? @map("date_of_birth") @db.Date
+  address      String?
+  city         String?
+  postalCode   String?   @map("postal_code")
+  medicalNotes String?   @map("medical_notes")
+  allergies    String?
+  medications  String?
+  bloodType    String?   @map("blood_type")
+  active       Boolean   @default(true)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  appointments    Appointment[]
+  clinicalRecords ClinicalRecord[]
+  odontogram      OdontogramEntry[]
+
+  @@map("patients")
+}
+
+model Appointment {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  patientId String    @map("patient_id") @db.Uuid
+  userId    String?   @map("user_id") @db.Uuid
+  date      DateTime  @db.Date
+  time      String
+  duration  Int       @default(30)
+  status    String    @default("scheduled")
+  treatment String?
+  notes     String?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  patient   Patient   @relation(fields: [patientId], references: [id])
+
+  @@index([patientId])
+  @@index([date])
+  @@map("appointments")
+}
+
+model ClinicalRecord {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  patientId   String   @map("patient_id") @db.Uuid
+  userId      String?  @map("user_id") @db.Uuid
+  date        DateTime @default(now())
+  type        String   @default("visit")
+  title       String
+  content     String
+  treatments  Json?    @default("[]")
+  attachments Json?    @default("[]")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  patient     Patient  @relation(fields: [patientId], references: [id])
+
+  @@index([patientId])
+  @@index([date(sort: Desc)])
+  @@map("clinical_records")
+}
+
+model OdontogramEntry {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  patientId   String   @map("patient_id") @db.Uuid
+  toothNumber Int      @map("tooth_number")
+  status      String   @default("healthy")
+  faces       Json?    @default("{}")
+  notes       String?
+  userId      String?  @map("user_id") @db.Uuid
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  patient     Patient  @relation(fields: [patientId], references: [id])
+
+  @@unique([patientId, toothNumber])
+  @@map("odontogram_entries")
+}
+
+model Treatment {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  code        String?  @unique
+  category    String
+  price       Decimal  @db.Decimal(10, 2)
+  duration    Int      @default(30)
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("treatments")
+}
+
+// ==========================================
+// MÓDULO IA & AUTOMATIZACIONES
+// ==========================================
+
+model Automation {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  enabled     Boolean  @default(true)
+  trigger     String
+  canal       String   @default("whatsapp")
+  steps       Json     @default("[]")
+  successRate Int      @default(0) @map("success_rate")
+  executions  Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@index([enabled])
+  @@index([trigger])
+  @@map("automations")
+}
+
+model AIConfig {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  agentName        String   @default("IA Dental") @map("agent_name")
+  language         String   @default("es")
+  welcomeMsg       String   @default("¡Hola! ¿En qué puedo ayudarte?") @map("welcome_msg")
+  tone             Json     @default("{\"empathy\":4,\"proactivity\":3,\"formality\":\"semiformal\"}")
+  knowledge        String[] @default([])
+  escalationRules  Json     @default("[]") @map("escalation_rules")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("ai_config")
+}
+
+model ConversationHistory {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  phone     String
+  patientId String?  @map("patient_id") @db.Uuid
+  messages  Json     @default("[]")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+
+  @@index([phone])
+  @@index([expiresAt])
+  @@map("conversation_history")
 }

@@ -1,0 +1,1178 @@
+
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import CbctViewer, { type ViewId, type CbctProgress, VIEWS as CBCT_VIEWS, exportCanvas as cbctExport } from '../components/radiologia/CbctViewer';
+import DicomViewer from '../components/radiologia/DicomViewer';
+import {
+    Upload, ZoomIn, ZoomOut, RotateCcw, Download, Printer,
+    Sliders, Wand2, Palette, Eye, EyeOff, Trash2, Plus,
+    ChevronLeft, ChevronRight, Maximize2, X, Info,
+    SplitSquareHorizontal, Filter, Search, FolderOpen,
+    Layers, Move, Pen, Ruler, Circle, Square, Type,
+    FlipHorizontal, FlipVertical, RefreshCw, Star, Tag,
+    Activity, Brain, Sparkles, Clock, FileImage, CheckCircle2,
+    AlertCircle, ChevronDown, MoreVertical
+} from 'lucide-react';
+import {
+    type EstudioRadiologico, type ImageType, type ColorMap, type Anotacion,
+    getEstudios, addEstudio, processEstudio, deleteEstudio,
+    IMAGE_TYPES, COLOR_MAPS,
+} from '../services/imagen.service';
+import { DENTAL_PRESETS } from '../services/dicom.service';
+
+interface RadiologiaProps {
+    activeSubArea: string;
+    brightness: number;
+    contrast: number;
+    sharpness: number;
+    colorMap: ColorMap;
+    onBrightnessChange: (v: number) => void;
+    onContrastChange: (v: number) => void;
+    onSharpnessChange: (v: number) => void;
+    onColorMapChange: (v: ColorMap) => void;
+    onStudySelect: (study: EstudioRadiologico | null) => void;
+}
+
+// ── HELPERS ────────────────────────────────────────────────────────────────────
+
+const tipoLabel = (t: ImageType) => IMAGE_TYPES.find(x => x.value === t)?.label ?? t;
+
+const formatBytes = (n?: number) => {
+    if (!n) return '—';
+    if (n < 1024) return `${n} B`;
+    if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
+    return `${(n / (1024 * 1024)).toFixed(2)} MB`;
+};
+
+const formatDate = (iso: string) => {
+    try {
+        return new Date(iso).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+    } catch { return iso; }
+};
+
+// ── PACIENTES DEMO ─────────────────────────────────────────────────────────────
+const DEMO_PATIENTS = [
+    { id: 'P001', nombre: 'García López, María', dob: '1985-03-12' },
+    { id: 'P002', nombre: 'Martínez Sánchez, Carlos', dob: '1972-07-24' },
+    { id: 'P003', nombre: 'Rodríguez Pérez, Ana', dob: '1990-11-08' },
+    { id: 'P004', nombre: 'López Fernández, José', dob: '1968-05-30' },
+    { id: 'P005', nombre: 'Sánchez Ruiz, Laura', dob: '2002-02-14' },
+];
+
+// Estado global demo: 16 estudios de 5 pacientes distintos
+const DEMO_STUDIES: EstudioRadiologico[] = [
+    // ── P001 García López ─────────────────────────────────────────────────────
+    {
+        id: 'demo-p001-1', pacienteNumPac: 'P001', tipo: 'panoramica',
+        nombre: 'PAN_GarciaLopez_20250115.dcm', fecha: '2025-01-15T09:30:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Control anual. Caries incipiente en 36.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Panoramic_dental_X-ray.jpg/1280px-Panoramic_dental_X-ray.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 10, sharpness: 20,
+        anotaciones: [
+            { id: 'a1', tipo: 'texto', x: 35, y: 60, texto: 'Caries pieza 36', color: '#FF4444', autor: 'Dra. Rubio', fecha: '2025-01-15T09:40:00Z' },
+            { id: 'a2', tipo: 'texto', x: 68, y: 55, texto: 'Revisar raíz 27', color: '#FFB800', autor: 'Dra. Rubio', fecha: '2025-01-15T09:42:00Z' },
+        ],
+        tags: ['control', 'caries', 'planmeca'], fileSize: 2621440,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P001_GarciaLopez\\20250115\\PAN_GarciaLopez_20250115.dcm',
+        dicomMeta: { patientId: 'P001', studyDate: '20250115', modality: 'PX', kvp: 64, tubeCurrent: 4, exposureTime: 14200, studyDescription: 'Ortopantomografía', manufacturer: 'Planmeca ProMax', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p001-2', pacienteNumPac: 'P001', tipo: 'periapical',
+        nombre: 'PERI_GarciaLopez_36_20250115.dcm', fecha: '2025-01-15T10:10:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Periapical pieza 36 post-tratamiento.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Periapical_radiograph.jpg/640px-Periapical_radiograph.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 5, contrast: 20, sharpness: 30,
+        anotaciones: [],
+        tags: ['endodoncia', 'pieza36'], fileSize: 524288,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P001_GarciaLopez\\20250115\\PERI_36_20250115.dcm',
+        dicomMeta: { patientId: 'P001', studyDate: '20250115', modality: 'IO', kvp: 60, tubeCurrent: 7, exposureTime: 380, studyDescription: 'Rx Periapical 36', manufacturer: 'Planmeca ProSensor', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p001-3', pacienteNumPac: 'P001', tipo: 'intraoral',
+        nombre: 'FOTO_intraoral_P001_anterior.jpg', fecha: '2025-01-15T10:30:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Foto intraoral sector anterior. Pre-blanqueamiento.',
+        originalUrl: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e19?w=800&q=80',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 0, sharpness: 0,
+        anotaciones: [], tags: ['blanqueamiento', 'estetica', 'preop'], fileSize: 1887436,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P001_GarciaLopez\\20250115\\FOTO_intraoral_anterior.jpg',
+    },
+
+    // ── P002 Martínez Sánchez ─────────────────────────────────────────────────
+    {
+        id: 'demo-p002-1', pacienteNumPac: 'P002', tipo: 'dicom',
+        nombre: 'CBCT_MartinezSanchez_20241220.dcm', fecha: '2024-12-20T11:00:00Z',
+        doctor: 'Dr. García', descripcion: 'CBCT implantología. Valoración hueso zona 1.6.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Animated_gif_of_MRI_brain_scan.gif/220px-Animated_gif_of_MRI_brain_scan.gif',
+        isProcessing: false, colorMap: 'bone', brightness: 0, contrast: 30, sharpness: 0,
+        anotaciones: [
+            { id: 'b1', tipo: 'texto', x: 50, y: 40, texto: 'Zona implante 1.6 — 8mm', color: '#44FF88', autor: 'Dr. García', fecha: '2024-12-20T11:30:00Z' },
+        ],
+        tags: ['implante', 'cbct', 'planmeca', 'romexis'], fileSize: 127920426,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P002_MartinezSanchez\\20241220\\CBCT_Implante_16.dcm',
+        dicomMeta: { patientId: 'P002', studyDate: '20241220', modality: 'CT', kvp: 84, tubeCurrent: 4, exposureTime: 14000, studyDescription: 'CBCT Implantología 1.6', manufacturer: 'Planmeca ProMax 3D', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p002-2', pacienteNumPac: 'P002', tipo: 'panoramica',
+        nombre: 'PAN_MartinezSanchez_20241220.dcm', fecha: '2024-12-20T10:15:00Z',
+        doctor: 'Dr. García', descripcion: 'Panorámica preoperatoria implante.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Panoramic_dental_X-ray.jpg/1280px-Panoramic_dental_X-ray.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 15, sharpness: 25,
+        anotaciones: [], tags: ['implante', 'preop', 'planmeca'], fileSize: 2621440,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P002_MartinezSanchez\\20241220\\PAN_preop.dcm',
+        dicomMeta: { patientId: 'P002', studyDate: '20241220', modality: 'PX', kvp: 64, tubeCurrent: 4, exposureTime: 14200, studyDescription: 'Ortopantomografía preop', manufacturer: 'Planmeca ProMax', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p002-3', pacienteNumPac: 'P002', tipo: 'extraoral',
+        nombre: 'FOTO_extraoral_frontal_P002.jpg', fecha: '2024-12-20T09:55:00Z',
+        doctor: 'Dr. García', descripcion: 'Foto extraoral frontal en reposo y sonrisa.',
+        originalUrl: 'https://images.unsplash.com/photo-1559591937-2f4a83e7a3dc?w=800&q=80',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 0, sharpness: 0,
+        anotaciones: [], tags: ['documentacion', 'estetica'], fileSize: 3145728,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P002_MartinezSanchez\\20241220\\FOTO_extraoral_frontal.jpg',
+    },
+
+    // ── P003 Rodríguez Pérez ──────────────────────────────────────────────────
+    {
+        id: 'demo-p003-1', pacienteNumPac: 'P003', tipo: 'cefalometrica',
+        nombre: 'CEFA_RodriguezPerez_20250210.dcm', fecha: '2025-02-10T08:30:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Teleradiografía lateral. Inicio ortodoncia.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Lateral_cephalometric_radiograph.jpg/640px-Lateral_cephalometric_radiograph.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 20, sharpness: 15,
+        anotaciones: [
+            { id: 'c1', tipo: 'texto', x: 55, y: 35, texto: 'ANB: 4.2° — Clase II', color: '#4488FF', autor: 'Dra. Rubio', fecha: '2025-02-10T09:00:00Z' },
+        ],
+        tags: ['ortodoncia', 'cefalometria', 'inicio'], fileSize: 2097152,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P003_RodriguezPerez\\20250210\\CEFA_lateral.dcm',
+        dicomMeta: { patientId: 'P003', studyDate: '20250210', modality: 'PX', kvp: 73, tubeCurrent: 12, exposureTime: 12000, studyDescription: 'Teleradiografía Lateral', manufacturer: 'Planmeca ProMax', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p003-2', pacienteNumPac: 'P003', tipo: 'panoramica',
+        nombre: 'PAN_RodriguezPerez_20250210.dcm', fecha: '2025-02-10T08:00:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Ortodoncia — fase inicial. Apiñamiento moderado.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Panoramic_dental_X-ray.jpg/1280px-Panoramic_dental_X-ray.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 10, sharpness: 20,
+        anotaciones: [], tags: ['ortodoncia', 'inicio', 'planmeca'], fileSize: 2621440,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P003_RodriguezPerez\\20250210\\PAN_ortodoncia.dcm',
+        dicomMeta: { patientId: 'P003', studyDate: '20250210', modality: 'PX', kvp: 64, tubeCurrent: 4, exposureTime: 14200, studyDescription: 'Ortopantomografía ortodoncia', manufacturer: 'Planmeca ProMax', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p003-3', pacienteNumPac: 'P003', tipo: 'intraoral',
+        nombre: 'FOTO_oclusal_sup_P003.jpg', fecha: '2025-02-10T08:45:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Vista oclusal superior. Mordida cruzada posterior.',
+        originalUrl: 'https://images.unsplash.com/photo-1588776814546-1ffbb2f6e228?w=800&q=80',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 0, sharpness: 0,
+        anotaciones: [], tags: ['ortodoncia', 'oclusal'], fileSize: 2359296,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P003_RodriguezPerez\\20250210\\FOTO_oclusal_sup.jpg',
+    },
+    {
+        id: 'demo-p003-4', pacienteNumPac: 'P003', tipo: 'extraoral',
+        nombre: 'FOTO_perfil_P003.jpg', fecha: '2025-02-10T08:50:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Perfil derecho. Convexidad facial aumentada.',
+        originalUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 0, sharpness: 0,
+        anotaciones: [], tags: ['ortodoncia', 'perfil'], fileSize: 1572864,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P003_RodriguezPerez\\20250210\\FOTO_perfil_der.jpg',
+    },
+
+    // ── P004 López Fernández ──────────────────────────────────────────────────
+    {
+        id: 'demo-p004-1', pacienteNumPac: 'P004', tipo: 'dicom',
+        nombre: 'CBCT_LopezFernandez_20250118.dcm', fecha: '2025-01-18T14:00:00Z',
+        doctor: 'Dr. García', descripcion: 'CBCT endodoncia. Evaluación ápices 1.1-1.3.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Animated_gif_of_MRI_brain_scan.gif/220px-Animated_gif_of_MRI_brain_scan.gif',
+        isProcessing: false, colorMap: 'bone', brightness: 0, contrast: 30, sharpness: 0,
+        anotaciones: [], tags: ['endodoncia', 'cbct', 'planmeca', 'romexis'], fileSize: 89400000,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P004_LopezFernandez\\20250118\\CBCT_Endodoncia_anterior.dcm',
+        dicomMeta: { patientId: 'P004', studyDate: '20250118', modality: 'CT', kvp: 84, tubeCurrent: 4, exposureTime: 14000, studyDescription: 'CBCT Endodoncia Sector Anterior', manufacturer: 'Planmeca ProMax 3D', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p004-2', pacienteNumPac: 'P004', tipo: 'periapical',
+        nombre: 'PERI_LopezFernandez_11_20250118.dcm', fecha: '2025-01-18T13:30:00Z',
+        doctor: 'Dr. García', descripcion: 'Periapical pieza 1.1. Lesión apical 3mm.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Periapical_radiograph.jpg/640px-Periapical_radiograph.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 10, contrast: 25, sharpness: 35,
+        anotaciones: [
+            { id: 'd1', tipo: 'texto', x: 48, y: 72, texto: 'Lesión apical — 3mm', color: '#FF4444', autor: 'Dr. García', fecha: '2025-01-18T13:45:00Z' },
+        ],
+        tags: ['endodoncia', 'lesion', 'pieza11'], fileSize: 524288,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P004_LopezFernandez\\20250118\\PERI_11.dcm',
+        dicomMeta: { patientId: 'P004', studyDate: '20250118', modality: 'IO', kvp: 59, tubeCurrent: 7, exposureTime: 360, studyDescription: 'Rx Periapical 1.1', manufacturer: 'Planmeca ProSensor', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p004-3', pacienteNumPac: 'P004', tipo: 'panoramica',
+        nombre: 'PAN_LopezFernandez_20250118.dcm', fecha: '2025-01-18T13:10:00Z',
+        doctor: 'Dr. García', descripcion: 'Control. Edentulismo parcial inferior.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Panoramic_dental_X-ray.jpg/1280px-Panoramic_dental_X-ray.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 10, sharpness: 20,
+        anotaciones: [], tags: ['control', 'edentulismo', 'planmeca'], fileSize: 2621440,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P004_LopezFernandez\\20250118\\PAN_control.dcm',
+        dicomMeta: { patientId: 'P004', studyDate: '20250118', modality: 'PX', kvp: 64, tubeCurrent: 4, exposureTime: 14200, studyDescription: 'Ortopantomografía', manufacturer: 'Planmeca ProMax', institutionName: 'Clínica Rubio García' }
+    },
+
+    // ── P005 Sánchez Ruiz ─────────────────────────────────────────────────────
+    {
+        id: 'demo-p005-1', pacienteNumPac: 'P005', tipo: 'panoramica',
+        nombre: 'PAN_SanchezRuiz_20250228.dcm', fecha: '2025-02-28T16:00:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Revisión cordales. Impactación 48.',
+        originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Panoramic_dental_X-ray.jpg/1280px-Panoramic_dental_X-ray.jpg',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 10, sharpness: 20,
+        anotaciones: [
+            { id: 'e1', tipo: 'texto', x: 82, y: 70, texto: '4.8 impactado — extracción', color: '#FF4444', autor: 'Dra. Rubio', fecha: '2025-02-28T16:15:00Z' },
+        ],
+        tags: ['cordales', 'cirugia', 'planmeca'], fileSize: 2621440,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P005_SanchezRuiz\\20250228\\PAN_cordales.dcm',
+        dicomMeta: { patientId: 'P005', studyDate: '20250228', modality: 'PX', kvp: 64, tubeCurrent: 4, exposureTime: 14200, studyDescription: 'Ortopantomografía cordales', manufacturer: 'Planmeca ProMax', institutionName: 'Clínica Rubio García' }
+    },
+    {
+        id: 'demo-p005-2', pacienteNumPac: 'P005', tipo: 'intraoral',
+        nombre: 'FOTO_intraoral_P005_48.jpg', fecha: '2025-02-28T16:20:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Intraoral sector posterior derecho. 4.8 en erupción.',
+        originalUrl: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e19?w=800&q=80',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 0, sharpness: 0,
+        anotaciones: [], tags: ['cordales', 'cirugia'], fileSize: 2097152,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P005_SanchezRuiz\\20250228\\FOTO_intraoral_48.jpg',
+    },
+    {
+        id: 'demo-p005-3', pacienteNumPac: 'P005', tipo: 'extraoral',
+        nombre: 'FOTO_frontal_sonrisa_P005.jpg', fecha: '2025-02-28T15:55:00Z',
+        doctor: 'Dra. Rubio', descripcion: 'Foto frontal sonrisa. Documentación pre-ortodoncia.',
+        originalUrl: 'https://images.unsplash.com/photo-1487222444687-3c4a79d65003?w=800&q=80',
+        isProcessing: false, colorMap: 'grayscale', brightness: 0, contrast: 0, sharpness: 0,
+        anotaciones: [], tags: ['estetica', 'documentacion'], fileSize: 1835008,
+        rutaOrigen: '\\\\SERVIDOR-CLINICA\\Romexis\\Pacientes\\P005_SanchezRuiz\\20250228\\FOTO_frontal_sonrisa.jpg',
+    },
+];
+
+// ── TIPOS FILTRO ────────────────────────────────────────────────────────────────
+
+type FilterType = 'all' | ImageType;
+type ToolMode = 'select' | 'text' | 'arrow' | 'circle' | 'ruler' | 'pan';
+
+// ── COMPONENTE PRINCIPAL ────────────────────────────────────────────────────────
+
+const Radiologia: React.FC<RadiologiaProps> = ({
+    activeSubArea, brightness, contrast, sharpness, colorMap,
+    onBrightnessChange, onContrastChange, onSharpnessChange, onColorMapChange, onStudySelect
+}) => {
+    const [estudios, setEstudios] = useState<EstudioRadiologico[]>(DEMO_STUDIES);
+    const [selectedId, setSelectedId] = useState<string | null>(DEMO_STUDIES[0].id);
+    const [filterType, setFilterType] = useState<FilterType>('all');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedPatient, setSelectedPatient] = useState<string | 'all'>('all');
+    const [isDragging, setIsDragging] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
+    const [showUpload, setShowUpload] = useState(false);
+    const [showInfo, setShowInfo] = useState(true);
+    const [cbctViewerFile, setCbctViewerFile] = useState<File | null>(null);
+
+    // Notifica al padre (App → Sidebar) cuando cambia el estudio seleccionado
+    React.useEffect(() => {
+        const s = estudios.find(e => e.id === selectedId) ?? null;
+        onStudySelect(s);
+    }, [selectedId, estudios]);
+
+    // ── Estado elevado del visor CBCT (antes vivía dentro de CbctViewer) ─────
+    const [cbctWC, setCbctWC] = useState(500);
+    const [cbctWW, setCbctWW] = useState(2500);
+    const [cbctPreset, setCbctPreset] = useState('hueso');
+    const [cbctLayout, setCbctLayout] = useState<'4x' | ViewId>('4x');
+    const [cbctInvert, setCbctInvert] = useState(false);
+    const [cbctProgress, setCbctProgress] = useState<CbctProgress>({ pano: 0, mip: 0, cefa: 0 });
+    const cbctPanoRef = useRef<HTMLCanvasElement>(null);
+    const cbctMipRef = useRef<HTMLCanvasElement>(null);
+    const cbctCefaRef = useRef<HTMLCanvasElement>(null);
+    // Mapa: estudioId → File real (para abrir directamente sin pedir de nuevo)
+    const fileMapRef = useRef<Map<string, File>>(new Map());
+
+    // Visor
+    const [zoom, setZoom] = useState(1);
+    const [rotation, setRotation] = useState(0);
+    const [flipH, setFlipH] = useState(false);
+    const [flipV, setFlipV] = useState(false);
+    const [panX, setPanX] = useState(0);
+    const [panY, setPanY] = useState(0);
+    const [activeTool, setActiveTool] = useState<ToolMode>('select');
+    const [compareMode, setCompareMode] = useState(false);
+
+    // AI Panel
+    const [localBrightness, setLocalBrightness] = useState(0);
+    const [localContrast, setLocalContrast] = useState(0);
+    const [localSharpness, setLocalSharpness] = useState(0);
+    const [selectedColorMap, setSelectedColorMap] = useState<ColorMap>('grayscale');
+    const [isEnhancing, setIsEnhancing] = useState(false);
+    const [enhanceSuccess, setEnhanceSuccess] = useState(false);
+    const [showColorPicker, setShowColorPicker] = useState(false);
+
+    // Anotaciones en vivo
+    const [drawingAnnotation, setDrawingAnnotation] = useState<Partial<Anotacion> | null>(null);
+    const [annotColor, setAnnotColor] = useState('#FF4444');
+    const [newAnnotText, setNewAnnotText] = useState('');
+    const [showAnnotInput, setShowAnnotInput] = useState(false);
+    const [annotPos, setAnnotPos] = useState({ x: 0, y: 0 });
+
+    const viewerRef = useRef<HTMLDivElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const isPanning = useRef(false);
+    const lastPan = useRef({ x: 0, y: 0 });
+
+    const selected = estudios.find(e => e.id === selectedId);
+    const displayUrl = selected
+        ? (selected.colorizedUrl ?? selected.enhancedUrl ?? selected.originalUrl)
+        : null;
+
+
+    // ── Filtrar estudios ────────────────────────────────────────────────────────
+    const filtered = estudios.filter(e => {
+        const matchType = filterType === 'all' || e.tipo === filterType;
+        const matchPatient = selectedPatient === 'all' || e.pacienteNumPac === selectedPatient;
+        const q = searchQuery.toLowerCase();
+        const matchSearch = !q || e.nombre.toLowerCase().includes(q)
+            || e.descripcion.toLowerCase().includes(q)
+            || e.doctor.toLowerCase().includes(q)
+            || e.tags.some(t => t.toLowerCase().includes(q));
+        return matchType && matchPatient && matchSearch;
+    });
+
+    // Agrupar por paciente para la galería
+    const groupedByPatient = DEMO_PATIENTS.map(p => ({
+        patient: p,
+        estudios: filtered.filter(e => e.pacienteNumPac === p.id),
+    })).filter(g => g.estudios.length > 0);
+    const unassigned = filtered.filter(e => !DEMO_PATIENTS.find(p => p.id === e.pacienteNumPac));
+
+
+    // ── Sincronizar ajustes al cambiar imagen ────────────────────────────────
+    useEffect(() => {
+        if (selected) {
+            setLocalBrightness(selected.brightness);
+            setLocalContrast(selected.contrast);
+            setLocalSharpness(selected.sharpness);
+            setSelectedColorMap(selected.colorMap);
+            setZoom(1);
+            setRotation(0);
+            setFlipH(false);
+            setFlipV(false);
+            setPanX(0);
+            setPanY(0);
+        }
+    }, [selectedId]);
+
+    // ── Upload ────────────────────────────────────────────────────────────────
+    const handleFiles = useCallback(async (files: FileList | null) => {
+        if (!files || files.length === 0) return;
+        setIsUploading(true);
+        for (const file of Array.from(files)) {
+            const ext = file.name.split('.').pop()?.toLowerCase() ?? '';
+            const isDicom = ['dcm', 'dic', 'dicom'].includes(ext);
+            const tipo: ImageType = isDicom ? 'dicom'
+                : ['jpg', 'jpeg', 'png', 'bmp', 'webp'].includes(ext) ? 'panoramica'
+                    : 'extraoral';
+            try {
+                const nuevo = await addEstudio(file, {
+                    pacienteNumPac: 'ACTUAL',
+                    tipo,
+                    doctor: 'Dra. Rubio',
+                    descripcion: 'Importado desde archivo',
+                });
+                setEstudios(prev => [nuevo, ...prev]);
+                setSelectedId(nuevo.id);
+                // Guardar referencia al archivo real
+                fileMapRef.current.set(nuevo.id, file);
+                // Si es DICOM → abrir visor CBCT automáticamente
+                if (isDicom) {
+                    setCbctViewerFile(file);
+                    setShowUpload(false);
+                }
+            } catch (err) {
+                console.error('Error cargando archivo:', err);
+            }
+        }
+        setIsUploading(false);
+        if (!fileMapRef.current.has(selectedId ?? '')) setShowUpload(false);
+    }, [selectedId]);
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragging(false);
+        handleFiles(e.dataTransfer.files);
+    };
+
+    // ── AI Enhance ────────────────────────────────────────────────────────────
+    const handleEnhance = async () => {
+        if (!selected) return;
+        setIsEnhancing(true);
+        setEnhanceSuccess(false);
+        try {
+            const updated = await processEstudio(selected.id, {
+                enhance: true,
+                colorMap: selectedColorMap,
+                brightness: localBrightness,
+                contrast: localContrast,
+                sharpness: localSharpness,
+            });
+            setEstudios(prev => prev.map(e => e.id === updated.id ? updated : e));
+            setEnhanceSuccess(true);
+            setTimeout(() => setEnhanceSuccess(false), 2000);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setIsEnhancing(false);
+        }
+    };
+
+    const handleColorMap = async (map: ColorMap) => {
+        setSelectedColorMap(map);
+        if (!selected) return;
+        try {
+            const updated = await processEstudio(selected.id, {
+                colorMap: map,
+                brightness: localBrightness,
+                contrast: localContrast,
+                sharpness: localSharpness,
+            });
+            setEstudios(prev => prev.map(e => e.id === updated.id ? updated : e));
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    // ── Zoom & Viewer ─────────────────────────────────────────────────────────
+    const handleWheel = (e: React.WheelEvent) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        setZoom(prev => Math.max(0.2, Math.min(5, prev + delta)));
+    };
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (activeTool === 'pan') {
+            isPanning.current = true;
+            lastPan.current = { x: e.clientX, y: e.clientY };
+        }
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isPanning.current && activeTool === 'pan') {
+            setPanX(px => px + (e.clientX - lastPan.current.x));
+            setPanY(py => py + (e.clientY - lastPan.current.y));
+            lastPan.current = { x: e.clientX, y: e.clientY };
+        }
+    };
+
+    const handleMouseUp = () => { isPanning.current = false; };
+
+    const resetView = () => {
+        setZoom(1);
+        setRotation(0);
+        setFlipH(false);
+        setFlipV(false);
+        setPanX(0);
+        setPanY(0);
+    };
+
+    // ── Delete ────────────────────────────────────────────────────────────────
+    const handleDelete = (id: string) => {
+        const isDemoStudy = DEMO_STUDIES.some(d => d.id === id);
+        if (isDemoStudy) return; // No borrar demos
+        deleteEstudio(id);
+        setEstudios(prev => prev.filter(e => e.id !== id));
+        if (selectedId === id) setSelectedId(estudios[0]?.id ?? null);
+    };
+
+    // ── Anotaciones ───────────────────────────────────────────────────────────
+    const handleViewerClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (activeTool !== 'text' || !selected) return;
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        setAnnotPos({ x, y });
+        setShowAnnotInput(true);
+    };
+
+    const submitAnnotation = () => {
+        if (!selected || !newAnnotText.trim()) { setShowAnnotInput(false); return; }
+        const newAn: Anotacion = {
+            id: `an-${Date.now()}`, tipo: 'texto',
+            x: annotPos.x, y: annotPos.y,
+            texto: newAnnotText, color: annotColor, autor: 'Dra. Rubio', fecha: new Date().toISOString(),
+        };
+        setEstudios(prev => prev.map(e => e.id === selected.id
+            ? { ...e, anotaciones: [...e.anotaciones, newAn] }
+            : e));
+        setNewAnnotText('');
+        setShowAnnotInput(false);
+    };
+
+    // ── Download ──────────────────────────────────────────────────────────────
+    const handleDownload = () => {
+        if (!displayUrl || !selected) return;
+        const a = document.createElement('a');
+        a.href = displayUrl;
+        a.download = `${selected.nombre.replace(/\.[^.]+$/, '')}_SmilePro.webp`;
+        a.click();
+    };
+
+    // ─ Abrir en Planmeca Romexis Viewer (app nativa Mac) ─────────────
+    const openInRomexis = async () => {
+        const filePath = selected?.rutaOrigen ?? null;
+        try {
+            const res = await fetch('/api/open-romexis', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ filePath }),
+            });
+            if (!res.ok) throw new Error(await res.text());
+        } catch (e) {
+            console.error('[Romexis]', e);
+            alert('No se pudo abrir Romexis. Asegúrate de que la app está en la ubicación correcta.');
+        }
+    };
+
+    // ─ Abrir en Weasis (open-source DICOM viewer via weasis:// URI) ───
+    // No necesita servidor — Weasis registra su propio protocolo al instalarse.
+    // URI: weasis://?$dicom:get -l "/ruta/archivo.dcm"
+    const openInWeasis = () => {
+        const filePath = selected?.rutaOrigen;
+        if (filePath) {
+            // Abrir archivo local
+            const cmd = `$dicom:get -l "${filePath}"`;
+            const uri = `weasis://?${encodeURIComponent(cmd)}`;
+            window.location.href = uri;
+        } else {
+            // Sin ruta: abrir Weasis en blanco
+            window.location.href = 'weasis://';
+        }
+    };
+
+    // ── RENDER ────────────────────────────────────────────────────────────────────
+
+    // ── Vista: Galería de Estudios ─────────────────────────────────────────────
+    if (activeSubArea === 'Gestión de Archivos') {
+        return <FileManagerView estudios={estudios} onDelete={handleDelete} onSelect={setSelectedId} />;
+    }
+
+    // ── Vista: Visor DICOM multi-corte (pantalla completa) ────────────────────
+    if (cbctViewerFile) {
+        return (
+            <div className="h-[calc(100vh-80px)] min-h-0 rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+                <DicomViewer
+                    file={cbctViewerFile}
+                    onClose={() => setCbctViewerFile(null)}
+                />
+            </div>
+        );
+    }
+
+
+
+
+
+
+    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1">
+        <Activity className="w-3 h-3 text-blue-400" />
+        Visor CBCT
+    </div>
+    { patientName && <p className="text-[10px] font-bold text-slate-200 mt-1 truncate">{patientName}</p> }
+    { cbctViewerFile && <p className="text-[8px] text-slate-500 truncate">{cbctViewerFile.name}</p> }
+    </div >
+
+    {/* Vista */ }
+    < div className = "px-3 py-2.5 border-b border-slate-800/60" >
+        <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider mb-2">Vista</p>
+        <div className="grid grid-cols-2 gap-1">
+            <button onClick={() => setCbctLayout('4x')}
+                className={`py-1.5 rounded-lg text-[9px] font-bold transition-all ${cbctLayout === '4x'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-800/60 text-slate-400 hover:text-slate-200 hover:bg-slate-700/60'
+                    }`}>
+                4 Vistas
+            </button>
+            {CBCT_VIEWS.map(v => (
+                <button key={v.id} onClick={() => setCbctLayout(v.id)}
+                    className={`py-1.5 rounded-lg text-[9px] font-bold transition-all border ${cbctLayout === v.id
+                        ? 'text-white border-transparent'
+                        : 'bg-slate-800/40 text-slate-400 hover:text-slate-200 border-slate-700/40'
+                        }`}
+                    style={{ backgroundColor: cbctLayout === v.id ? `${v.color}cc` : undefined }}>
+                    {v.abr}
+                </button>
+            ))}
+        </div>
+    </div >
+
+    {/* Presets dentales */ }
+    < div className = "px-3 py-2.5 border-b border-slate-800/60" >
+        <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+            <Layers className="w-3 h-3 text-blue-400" /> Presets Dentales
+        </p>
+        <div className="space-y-1">
+            {DENTAL_PRESETS.map(p => (
+                <button key={p.key}
+                    onClick={() => { setCbctWC(p.wc); setCbctWW(p.ww); setCbctPreset(p.key); }}
+                    className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[9px] font-semibold flex justify-between items-center transition-all ${cbctPreset === p.key
+                        ? 'bg-blue-600/20 text-blue-300 border border-blue-500/40'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent'
+                        }`}>
+                    <span>{p.label}</span>
+                    <span className="text-[7px] font-mono text-slate-600">{p.wc}/{p.ww}</span>
+                </button>
+            ))}
+        </div>
+    </div >
+
+    {/* Window / Level */ }
+    < div className = "px-3 py-2.5 border-b border-slate-800/60 space-y-2.5" >
+        <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Window / Level</p>
+{
+    [
+        { k: 'Nivel (WC)', val: cbctWC, set: (v: number) => { setCbctWC(v); setCbctPreset('custom'); }, min: -1000, max: 4000 },
+        { k: 'Ventana (WW)', val: cbctWW, set: (v: number) => { setCbctWW(v); setCbctPreset('custom'); }, min: 1, max: 8000 },
+    ].map(({ k, val, set, min, max }) => (
+        <div key={k}>
+            <div className="flex justify-between mb-1">
+                <span className="text-[9px] text-slate-400">{k}</span>
+                <span className="text-[9px] font-mono text-blue-400">{Math.round(val)}</span>
+            </div>
+            <input type="range" min={min} max={max} value={val}
+                onChange={e => set(Number(e.target.value))}
+                className="w-full h-[2px] appearance-none cursor-pointer bg-slate-700 rounded-full accent-blue-500" />
+        </div>
+    ))
+}
+    </div >
+
+    {/* Inversión */ }
+    < div className = "px-3 py-2.5 border-b border-slate-800/60" >
+        <button
+            onClick={() => setCbctInvert(i => !i)}
+            className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-[9px] font-bold transition-all border ${cbctInvert
+                ? 'bg-blue-600/20 text-blue-300 border-blue-500/40'
+                : 'text-slate-400 border-slate-700/40 hover:text-slate-200 hover:bg-slate-800/60'
+                }`}>
+            <span>Invertir imagen</span>
+            <div className={`w-8 h-4 rounded-full transition-all relative ${cbctInvert ? 'bg-blue-600' : 'bg-slate-700'
+                }`}>
+                <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all shadow-sm ${cbctInvert ? 'left-4' : 'left-0.5'
+                    }`} />
+            </div>
+        </button>
+    </div >
+
+    {/* Reconstrucciones async */ }
+    < div className = "px-3 py-2.5 border-b border-slate-800/60" >
+        <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider mb-2">Reconstrucciones</p>
+{
+    [
+        {
+            label: 'Panorámica', pct: cbctProgress.pano, color: '#8b5cf6',
+            onExport: () => cbctExport(cbctPanoRef.current, `panoramica_${(patientName ?? 'pac').replace(/[^a-zA-Z0-9]/g, '_')}.png`, patientName ?? 'Paciente', 'PANORÁMICA CBCT')
+        },
+        { label: 'MIP 3D', pct: cbctProgress.mip, color: '#ec4899', onExport: undefined },
+        {
+            label: 'Cefalometría', pct: cbctProgress.cefa, color: '#06b6d4',
+            onExport: () => cbctExport(cbctCefaRef.current, `cefalometria_${(patientName ?? 'pac').replace(/[^a-zA-Z0-9]/g, '_')}.png`, patientName ?? 'Paciente', 'CEFALOMETRÍA CBCT')
+        },
+    ].map(({ label, pct, color, onExport }) => (
+        <div key={label} className="mb-2">
+            <div className="flex items-center justify-between mb-1">
+                <span className="text-[9px] font-semibold" style={{ color }}>{label}</span>
+                {pct >= 1 ? (
+                    onExport ? (
+                        <button onClick={onExport}
+                            className="text-[7px] font-bold px-1.5 py-0.5 rounded transition-all"
+                            style={{ background: `${color}20`, color, border: `1px solid ${color}40` }}>
+                            Exportar
+                        </button>
+                    ) : <span className="text-[7px] text-slate-600">✓ Lista</span>
+                ) : pct > 0 ? (
+                    <span className="text-[7px] font-mono text-slate-600">{Math.round(pct * 100)}%</span>
+                ) : (
+                    <span className="text-[7px] text-slate-700">Pendiente…</span>
+                )}
+            </div>
+            <div className="h-0.5 rounded-full bg-slate-800">
+                <div className="h-full rounded-full transition-all duration-500"
+                    style={{ width: `${pct * 100}%`, backgroundColor: color }} />
+            </div>
+        </div>
+    ))
+}
+    </div >
+
+    {/* Botón cerrar */ }
+    < div className = "px-3 py-2.5 mt-auto" >
+        <button onClick={() => setCbctViewerFile(null)}
+            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all bg-red-600/20 text-red-400 border border-red-600/30 hover:bg-red-600/30">
+            <X className="w-3.5 h-3.5" /> Cerrar Visor
+        </button>
+    </div >
+    </div >
+
+    {/* ── VIEWPORT DICOM — visor multi-corte ── */ }
+    < div className = "flex-1 min-w-0 overflow-hidden" >
+        <DicomViewer
+            file={cbctViewerFile}
+            onClose={() => setCbctViewerFile(null)}
+        />
+    </div >
+        </div >
+    );
+}
+
+return (
+    <div className="flex h-[calc(100vh-80px)] min-h-0 gap-0 bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+
+
+        {/* ── CENTRO: VISOR PRINCIPAL ──────────────────────────────── */}
+
+        {/* ── CENTRO: VISOR PRINCIPAL ──────────────────────────────── */}
+        <div className="flex-1 flex flex-col min-w-0">
+
+            {/* ── CONTEXTO: Paciente + Estudio ──────────────────────── */}
+            <div className="flex items-center gap-3 px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex-shrink-0">
+                {selected ? (
+                    <>
+                        {/* Avatar paciente */}
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#002855] to-[#1a60c8] flex items-center justify-center text-white text-[11px] font-black flex-shrink-0">
+                            {(DEMO_PATIENTS.find(p => p.id === selected.pacienteNumPac)?.nombre[0]) ?? '?'}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <span className="text-[13px] font-black text-slate-800 truncate">
+                                    {DEMO_PATIENTS.find(p => p.id === selected.pacienteNumPac)?.nombre?.split(',')[0] ?? 'Paciente desconocido'}
+                                </span>
+                                {selected.dicomMeta?.modality === 'CT' && (
+                                    <span className="text-[9px] font-black bg-orange-100 text-orange-600 border border-orange-200 px-1.5 py-px rounded-full uppercase tracking-wider">CBCT 3D</span>
+                                )}
+                                <span className={`text-[9px] font-bold px-1.5 py-px rounded-full ${selected.tipo === 'panoramica' ? 'bg-blue-100 text-blue-700' :
+                                    selected.tipo === 'periapical' ? 'bg-purple-100 text-purple-700' :
+                                        selected.tipo === 'cefalometrica' ? 'bg-teal-100 text-teal-700' :
+                                            'bg-slate-100 text-slate-600'
+                                    }`}>{tipoLabel(selected.tipo)}</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-[10px] text-slate-400 mt-0.5">
+                                <span className="flex items-center gap-1">📅 {formatDate(selected.fecha)}</span>
+                                <span className="flex items-center gap-1">👩‍⚕️ {selected.doctor}</span>
+                                {selected.fileSize && <span>{formatBytes(selected.fileSize)}</span>}
+                                {selected.descripcion && <span className="truncate max-w-[300px] italic">"{selected.descripcion}"</span>}
+                            </div>
+                        </div>
+                        {/* Tags inline */}
+                        <div className="hidden xl:flex items-center gap-1 flex-shrink-0">
+                            {selected.tags.slice(0, 3).map(t => (
+                                <span key={t} className="text-[8px] px-1.5 py-0.5 bg-white text-slate-500 rounded border border-slate-200">{t}</span>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <div className="flex items-center gap-2 text-slate-400">
+                        <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center">
+                            <FileImage className="w-4 h-4" />
+                        </div>
+                        <span className="text-[12px] font-medium">Selecciona un estudio del filmstrip inferior</span>
+                    </div>
+                )}
+            </div>
+
+            <div className="flex items-center gap-1 px-3 py-2 bg-white border-b border-slate-200 flex-shrink-0">
+                {/* Tools */}
+                <div className="flex items-center gap-0.5 mr-2">
+                    {([
+                        { mode: 'select' as ToolMode, icon: <Move className="w-3 h-3" />, title: 'Seleccionar' },
+                        { mode: 'pan' as ToolMode, icon: <Move className="w-3 h-3 rotate-45" />, title: 'Mover' },
+                        { mode: 'text' as ToolMode, icon: <Pen className="w-3 h-3" />, title: 'Anotar texto' },
+                        { mode: 'ruler' as ToolMode, icon: <Ruler className="w-3 h-3" />, title: 'Medir' },
+                    ] as const).map(({ mode, icon, title }) => (
+                        <button key={mode} title={title} onClick={() => setActiveTool(mode)}
+                            className={`w-6 h-6 flex items-center justify-center rounded transition-all ${activeTool === mode ? 'bg-[#002855] text-white shadow-sm' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'}`}>
+                            {icon}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="w-px h-4 bg-slate-200" />
+
+                {/* Zoom */}
+                <button onClick={() => setZoom(z => Math.max(0.2, z - 0.2))} title="Alejar"
+                    className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-all">
+                    <ZoomOut className="w-3 h-3" />
+                </button>
+                <span className="text-[10px] font-bold text-slate-600 w-10 text-center">{Math.round(zoom * 100)}%</span>
+                <button onClick={() => setZoom(z => Math.min(5, z + 0.2))} title="Acercar"
+                    className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-all">
+                    <ZoomIn className="w-3 h-3" />
+                </button>
+
+                <div className="w-px h-4 bg-slate-200 mx-1" />
+
+                {/* Rotación / flip */}
+                <button onClick={() => setRotation(r => r - 90)} title="Rotar izquierda"
+                    className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-all">
+                    <RotateCcw className="w-3 h-3" />
+                </button>
+                <button onClick={() => setFlipH(f => !f)} title="Voltear horizontal"
+                    className={`w-6 h-6 flex items-center justify-center rounded transition-all ${flipH ? 'bg-blue-100 text-blue-600' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'}`}>
+                    <FlipHorizontal className="w-3 h-3" />
+                </button>
+                <button onClick={() => setFlipV(f => !f)} title="Voltear vertical"
+                    className={`w-6 h-6 flex items-center justify-center rounded transition-all ${flipV ? 'bg-blue-100 text-blue-600' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'}`}>
+                    <FlipVertical className="w-3 h-3" />
+                </button>
+                <button onClick={resetView} title="Restablecer vista"
+                    className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-all">
+                    <RefreshCw className="w-3 h-3" />
+                </button>
+
+                <div className="w-px h-4 bg-slate-200 mx-1" />
+
+                {/* Comparar */}
+                <button onClick={() => setCompareMode(c => !c)} title="Modo antes/después"
+                    className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-all ${compareMode ? 'bg-purple-100 text-purple-700 border border-purple-200' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'}`}>
+                    <SplitSquareHorizontal className="w-3 h-3" />
+                    <span className="hidden xl:inline">Comparar</span>
+                </button>
+
+                {/* Botón Visor CBCT — solo para estudios CT */}
+                {selected?.dicomMeta?.modality === 'CT' && (
+                    <>
+                        <div className="w-px h-4 bg-slate-200 mx-1" />
+                        <button
+                            onClick={() => {
+                                const storedFile = selected ? fileMapRef.current.get(selected.id) : undefined;
+                                if (storedFile) {
+                                    setCbctViewerFile(storedFile);
+                                } else {
+                                    const inp = document.createElement('input');
+                                    inp.type = 'file';
+                                    inp.accept = '.dcm,.dic,.dicom';
+                                    inp.onchange = (ev) => {
+                                        const f = (ev.target as HTMLInputElement).files?.[0];
+                                        if (f) setCbctViewerFile(f);
+                                    };
+                                    inp.click();
+                                }
+                            }}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white shadow-lg shadow-orange-500/20"
+                            title="Abrir visor CBCT"
+                        >
+                            <Layers className="w-3 h-3" />
+                            Visor CBCT
+                        </button>
+                    </>
+                )}
+
+                <div className="flex-1" />
+
+                {/* Abrir en Romexis */}
+                <button
+                    onClick={openInRomexis}
+                    title="Abrir en Planmeca Romexis Viewer"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-[#002855] hover:bg-[#003a75] text-white transition-all shadow-sm border border-[#003a75]"
+                >
+                    <span className="text-[10px]">🦷</span>
+                    Romexis
+                </button>
+
+                {/* Abrir en Weasis */}
+                <button
+                    onClick={openInWeasis}
+                    title="Abrir en Weasis DICOM Viewer (weasis://)"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-sky-600 hover:bg-sky-700 text-white transition-all shadow-sm border border-sky-700"
+                >
+                    <span className="text-[10px]">🏥</span>
+                    Weasis
+                </button>
+
+                <div className="w-px h-4 bg-slate-200" />
+
+                {/* Info toggle */}
+                <button onClick={() => setShowInfo(i => !i)} title={showInfo ? 'Ocultar info' : 'Mostrar info'}
+                    className={`w-6 h-6 flex items-center justify-center rounded transition-all ${showInfo ? 'bg-slate-100 text-slate-700' : 'text-slate-400 hover:text-slate-700 hover:bg-slate-100'}`}>
+                    <Info className="w-3 h-3" />
+                </button>
+
+                {/* Descargar / imprimir */}
+                <button onClick={handleDownload} title="Descargar imagen procesada"
+                    className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-all">
+                    <Download className="w-3 h-3" />
+                </button>
+                <button title="Imprimir"
+                    className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-all"
+                    onClick={() => window.print()}>
+                    <Printer className="w-3 h-3" />
+                </button>
+            </div>
+
+            {/* Área visor */}
+            <div className="flex-1 relative overflow-hidden bg-slate-100" ref={viewerRef}
+                onWheel={handleWheel}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onClick={handleViewerClick}
+                style={{ cursor: activeTool === 'pan' ? 'grab' : activeTool === 'text' ? 'crosshair' : 'default' }}
+            >
+                {!selected ? (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-slate-400">
+                        <FileImage className="w-16 h-16 opacity-30 text-slate-400" />
+                        <p className="text-sm font-bold">Selecciona un estudio</p>
+                    </div>
+                ) : compareMode ? (
+                    <div className="absolute inset-0 flex">
+                        <div className="flex-1 relative border-r-2 border-blue-500/50 overflow-hidden">
+                            <div className="absolute top-2 left-2 text-[9px] font-bold text-blue-700 bg-blue-100/90 px-2 py-0.5 rounded">ORIGINAL</div>
+                            <img src={selected.originalUrl} alt="Original"
+                                className="w-full h-full object-contain"
+                                style={{ transform: `scale(${zoom}) rotate(${rotation}deg) scaleX(${flipH ? -1 : 1}) scaleY(${flipV ? -1 : 1}) translate(${panX}px, ${panY}px)`, transition: 'transform 0.05s' }}
+                                onError={e => { (e.target as HTMLImageElement).alt = 'No disponible'; }} />
+                        </div>
+                        <div className="flex-1 relative overflow-hidden">
+                            <div className="absolute top-2 left-2 text-[9px] font-bold text-amber-700 bg-amber-100/90 px-2 py-0.5 rounded z-10">IA MEJORADA ✦</div>
+                            <img src={selected.colorizedUrl ?? selected.enhancedUrl ?? selected.originalUrl} alt="Mejorada"
+                                className="w-full h-full object-contain"
+                                style={{ transform: `scale(${zoom}) rotate(${rotation}deg) scaleX(${flipH ? -1 : 1}) scaleY(${flipV ? -1 : 1}) translate(${panX}px, ${panY}px)`, transition: 'transform 0.05s' }}
+                                onError={e => { (e.target as HTMLImageElement).alt = 'No disponible'; }} />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                        <div style={{
+                            transform: `translate(${panX}px, ${panY}px) scale(${zoom}) rotate(${rotation}deg) scaleX(${flipH ? -1 : 1}) scaleY(${flipV ? -1 : 1})`,
+                            transition: isPanning.current ? 'none' : 'transform 0.1s ease',
+                            position: 'relative',
+                        }}>
+                            <img
+                                src={displayUrl!}
+                                alt={selected.nombre}
+                                className="max-w-none select-none"
+                                style={{
+                                    maxHeight: '75vh', maxWidth: '100%',
+                                    filter: `brightness(${1 + localBrightness / 200}) contrast(${1 + localContrast / 150})`,
+                                }}
+                                draggable={false}
+                                onError={e => {
+                                    const t = e.target as HTMLImageElement;
+                                    t.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"><rect fill="%23111827" width="400" height="200"/><text fill="%234b5563" font-family="sans-serif" font-size="14" x="50%" y="50%" text-anchor="middle" dy="0.3em">Imagen no disponible</text></svg>';
+                                }}
+                            />
+                            {/* Anotaciones overlay */}
+                            {selected.anotaciones.map(an => (
+                                an.tipo === 'texto' && (
+                                    <div
+                                        key={an.id}
+                                        className="absolute pointer-events-none"
+                                        style={{ left: `${an.x}%`, top: `${an.y}%`, transform: 'translate(-50%, -50%)' }}
+                                    >
+                                        <div className="flex items-center gap-1">
+                                            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: an.color }} />
+                                            <span className="text-[10px] font-bold text-slate-800 bg-white/90 shadow-sm px-1.5 py-0.5 rounded whitespace-nowrap"
+                                                style={{ borderLeft: `2px solid ${an.color}` }}>
+                                                {an.texto}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )
+                            ))}
+                        </div>
+
+                        {/* Input anotación texto */}
+                        {showAnnotInput && (
+                            <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-sm flex items-center justify-center z-50" onClick={() => setShowAnnotInput(false)}>
+                                <div className="bg-white border border-slate-200 rounded-xl p-4 w-72 shadow-2xl" onClick={e => e.stopPropagation()}>
+                                    <p className="text-[11px] font-bold text-slate-700 mb-2">Añadir anotación</p>
+                                    <input autoFocus value={newAnnotText} onChange={e => setNewAnnotText(e.target.value)}
+                                        onKeyDown={e => e.key === 'Enter' && submitAnnotation()}
+                                        placeholder="Texto de la anotación…"
+                                        className="w-full bg-slate-50 text-slate-800 text-xs px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500 mb-3"
+                                    />
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <span className="text-[10px] text-slate-400">Color:</span>
+                                        {['#FF4444', '#44FF44', '#4488FF', '#FFB800', '#FF44FF'].map(c => (
+                                            <button key={c} onClick={() => setAnnotColor(c)}
+                                                className={`w-5 h-5 rounded-full border-2 transition-all ${annotColor === c ? 'border-white scale-110' : 'border-transparent'}`}
+                                                style={{ backgroundColor: c }} />
+                                        ))}
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button onClick={submitAnnotation} className="flex-1 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-bold rounded-lg transition-all">Añadir</button>
+                                        <button onClick={() => setShowAnnotInput(false)} className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] rounded-lg transition-all">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Indicador estado procesando */}
+                {selected?.isProcessing && (
+                    <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex flex-col items-center justify-center gap-3 z-20">
+                        <div className="w-8 h-8 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" />
+                        <p className="text-sm font-bold text-[#002855]">Procesando con IA…</p>
+                    </div>
+                )}
+
+                {/* Info metadatos overlay */}
+                {showInfo && selected && (
+                    <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg px-3 py-2 text-[9px] text-slate-600 pointer-events-none shadow-sm">
+                        <div className="font-bold text-slate-800 mb-0.5">{selected.nombre}</div>
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
+                            <span className="text-slate-400">Tipo:</span><span>{tipoLabel(selected.tipo)}</span>
+                            <span className="text-slate-400">Fecha:</span><span>{formatDate(selected.fecha)}</span>
+                            <span className="text-slate-400">Doctor:</span><span>{selected.doctor}</span>
+                            <span className="text-slate-400">Tamaño:</span><span>{formatBytes(selected.fileSize)}</span>
+                            {selected.dicomMeta?.kvp && <><span className="text-slate-400">kVp:</span><span>{selected.dicomMeta.kvp}</span></>}
+                            {selected.dicomMeta?.modality && <><span className="text-slate-400">Modal.:</span><span>{selected.dicomMeta.modality}</span></>}
+                        </div>
+                    </div>
+                )}
+
+                {/* Zoom badge */}
+                <div className="absolute top-3 right-3 bg-white/80 text-slate-500 text-[9px] font-bold px-2 py-0.5 rounded pointer-events-none shadow-sm border border-slate-200">
+                    {Math.round(zoom * 100)}%
+                </div>
+            </div>
+
+            {/* Carrete inferior */}
+            <div className="flex-shrink-0 bg-white border-t border-slate-200 px-3 py-2">
+                <div className="flex items-center gap-2 overflow-x-auto pb-1">
+                    {estudios.map(e => (
+                        <button key={e.id} onClick={() => setSelectedId(e.id)}
+                            className={`relative flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${selectedId === e.id ? 'border-[#002855] shadow-md shadow-blue-200/60' : 'border-slate-200 opacity-60 hover:opacity-90 hover:border-slate-400'}`}>
+                            <img src={e.colorizedUrl ?? e.enhancedUrl ?? e.originalUrl} alt={e.nombre}
+                                className="w-full h-full object-cover"
+                                style={{ filter: e.tipo === 'panoramica' ? 'grayscale(0.2) contrast(1.1)' : 'none' }}
+                                onError={e => { (e.target as HTMLImageElement).style.opacity = '0'; }} />
+                            {(e.colorizedUrl || e.enhancedUrl) && (
+                                <div className="absolute top-0.5 right-0.5"><Sparkles className="w-2 h-2 text-yellow-400" /></div>
+                            )}
+                        </button>
+                    ))}
+                    <button onClick={() => setShowUpload(true)}
+                        className="flex-shrink-0 w-12 h-12 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-[#002855] hover:text-[#002855] transition-all">
+                        <Plus className="w-4 h-4" />
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        {/* ── MODAL UPLOAD ─────────────────────────────────────────────── */}
+        {
+            showUpload && (
+                <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-lg p-6 shadow-xl">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-[13px] font-black text-slate-800 flex items-center gap-2">
+                                <Upload className="w-4 h-4 text-blue-400" />
+                                Importar Estudios
+                            </h3>
+                            <button onClick={() => setShowUpload(false)} className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-all">
+                                <X className="w-4 h-4" />
+                            </button>
+                        </div>
+                        <div
+                            onDragOver={e => { e.preventDefault(); setIsDragging(true); }}
+                            onDragLeave={() => setIsDragging(false)}
+                            onDrop={handleDrop}
+                            onClick={() => fileInputRef.current?.click()}
+                            className={`border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all ${isDragging ? 'border-[#002855] bg-blue-50' : 'border-slate-300 hover:border-blue-400 hover:bg-slate-50'}`}
+                        >
+                            <input ref={fileInputRef} type="file" multiple accept="image/*,.dcm,.dic" className="hidden"
+                                onChange={e => handleFiles(e.target.files)} />
+                            <div className="flex flex-col items-center gap-3">
+                                {isUploading ? (
+                                    <div className="w-10 h-10 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" />
+                                ) : (
+                                    <div className="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+                                        <Upload className="w-7 h-7 text-blue-400" />
+                                    </div>
+                                )}
+                                <div>
+                                    <p className="text-[12px] font-bold text-slate-700">
+                                        {isUploading ? 'Procesando archivos…' : 'Arrastra archivos aquí o haz clic para seleccionar'}
+                                    </p>
+                                    <p className="text-[10px] text-slate-400 mt-1">JPEG, PNG, BMP, WebP, DICOM (.dcm, .dic)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-4 grid grid-cols-3 gap-2 text-[9px] text-slate-400">
+                            {[
+                                { icon: <FileImage className="w-3 h-3 text-blue-400" />, label: 'Panorámicas' },
+                                { icon: <Layers className="w-3 h-3 text-purple-400" />, label: 'DICOM / TC' },
+                                { icon: <Eye className="w-3 h-3 text-green-400" />, label: 'Fotos clínicas' },
+                            ].map(({ icon, label }) => (
+                                <div key={label} className="flex items-center gap-1.5 bg-slate-100 rounded-lg px-2 py-1.5">
+                                    {icon}
+                                    <span className="font-bold">{label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        {/* fin del contenedor principal */}
+    </div >
+);
+};
+
+// ── FILE MANAGER VIEW ──────────────────────────────────────────────────────────
+
+const FileManagerView: React.FC<{
+    estudios: EstudioRadiologico[];
+    onDelete: (id: string) => void;
+    onSelect: (id: string) => void;
+}> = ({ estudios, onDelete, onSelect }) => {
+    const DEMO_IDS = new Set(['demo-1', 'demo-2', 'demo-3']);
+    return (
+        <div className="p-6">
+            <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                <div className="px-4 py-3 border-b border-slate-200 flex items-center gap-2 bg-slate-50">
+                    <FolderOpen className="w-4 h-4 text-blue-400" />
+                    <h3 className="text-[12px] font-black text-slate-700 uppercase tracking-wider">Gestión de Archivos</h3>
+                    <span className="text-[10px] text-slate-400 ml-auto">{estudios.length} estudio(s)</span>
+                </div>
+                <div className="divide-y divide-slate-100">
+                    {estudios.map(e => (
+                        <div key={e.id} className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-all group">
+                            <div className="w-12 h-10 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0 border border-slate-200">
+                                <img src={e.colorizedUrl ?? e.originalUrl} alt={e.nombre} className="w-full h-full object-cover opacity-80"
+                                    onError={e => { (e.target as HTMLImageElement).style.opacity = '0'; }} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-[11px] font-bold text-slate-800 truncate">{e.nombre}</p>
+                                <div className="flex items-center gap-2 text-[9px] text-slate-400">
+                                    <span>{tipoLabel(e.tipo)}</span>
+                                    <span>·</span>
+                                    <span>{formatDate(e.fecha)}</span>
+                                    <span>·</span>
+                                    <span>{formatBytes(e.fileSize)}</span>
+                                    <span>·</span>
+                                    <span>{e.doctor}</span>
+                                </div>
+                                {(e.enhancedUrl || e.colorizedUrl) && (
+                                    <span className="text-[8px] font-bold text-yellow-400 flex items-center gap-0.5 mt-0.5">
+                                        <Sparkles className="w-2. h-2.5" /> IA aplicada
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button onClick={() => onSelect(e.id)}
+                                    className="w-7 h-7 flex items-center justify-center rounded-lg bg-blue-600/20 text-blue-400 hover:bg-blue-600/40 transition-all">
+                                    <Eye className="w-3.5 h-3.5" />
+                                </button>
+                                <button onClick={() => !DEMO_IDS.has(e.id) && onDelete(e.id)}
+                                    disabled={DEMO_IDS.has(e.id)}
+                                    title={DEMO_IDS.has(e.id) ? 'Estudio demo (no eliminable)' : 'Eliminar'}
+                                    className={`w-7 h-7 flex items-center justify-center rounded-lg transition-all ${DEMO_IDS.has(e.id) ? 'text-slate-700 cursor-not-allowed' : 'bg-red-600/20 text-red-400 hover:bg-red-600/40'}`}>
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Radiologia;

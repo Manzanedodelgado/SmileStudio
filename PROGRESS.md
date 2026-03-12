@@ -69,13 +69,12 @@ Estado:         🟢 En curso
 
 ## 🔄 Lo que ESTAMOS haciendo ahora
 
-- [/] **Fase 1 — Cimientos del proyecto**
-  - [x] Setup frontend completo
-  - [x] Página Clínica implementada
-  - [ ] Backend (Node.js + Express + TypeScript + Prisma)
-  - [ ] Docker Compose (PostgreSQL + Redis + MinIO)
-  - [ ] Autenticación JWT
-  - [ ] RBAC con middleware
+- [/] **Fase 2 — Gestión Clínica Core**
+  - [x] CRUD pacientes (backend + frontend: lista, búsqueda, ficha, edición, nuevo)
+  - [x] Historia clínica + odontograma interactivo (Sesión 2026-03-10)
+  - [x] Entradas médicas — timeline con creación/eliminación (Sesión 2026-03-10)
+  - [ ] Catálogo de tratamientos (UI)
+  - [ ] Presupuestos
 
 ---
 
@@ -83,19 +82,19 @@ Estado:         🟢 En curso
 
 ### 🏗️ Fase 1 — Cimientos (Semanas 1-4)
 - [x] 1.1 Setup frontend: Vite+React+TS
-- [ ] 1.2 Setup backend: Node+Express+TS
-- [ ] 1.3 Docker Compose: PostgreSQL + Redis + MinIO + Ollama
-- [ ] 1.4 Esquema Prisma: pacientes, usuarios, roles, permisos
-- [ ] 1.5 Sistema de autenticación JWT + refresh tokens
-- [ ] 1.6 RBAC con middleware de permisos
+- [x] 1.2 Setup backend: Node+Express+TS (desplegado en VPS)
+- [ ] 1.3 Docker Compose local (dev): PostgreSQL + Redis
+- [x] 1.4 Esquema Prisma: UserRole enum + User model
+- [x] 1.5 Sistema de autenticación JWT + refresh tokens
+- [x] 1.6 RBAC con middleware de permisos
 - [x] 1.7 Design system: tokens CSS, componentes base
 - [x] 1.8 Layout principal: sidebar, header, routing
 - [ ] 1.9 CI/CD pipeline básico
 
 ### 🏥 Fase 2 — Gestión Clínica Core (Semanas 5-10)
-- [ ] 2.1 CRUD completo de pacientes + ficha detallada
-- [ ] 2.2 Historia clínica + odontograma interactivo
-- [ ] 2.3 Entradas médicas (registro de visitas)
+- [x] 2.1 CRUD completo de pacientes + ficha detallada
+- [x] 2.2 Historia clínica + odontograma interactivo (FDI, 32 dientes, click para cambiar estado)
+- [x] 2.3 Entradas médicas (registro de visitas con tipos, timeline, CRUD)
 - [ ] 2.4 Agenda multi-doctor con drag & drop
 - [ ] 2.5 Catálogo de tratamientos configurable
 - [ ] 2.6 Presupuestos: creación, estados, PDF
@@ -162,6 +161,7 @@ Estado:         🟢 En curso
 | 2026-03-07 | **Revisión de infraestructura** | Evaluación completa: Supabase→PostgreSQL local, MacBook Intel→VPS Hostinger, Ollama→Gemini API, NAS Buffalo para backups |
 | 2026-03-07 | **Backend en producción** 🟢 | VPS desplegado con Docker+Traefik+EasyPanel. API en `https://gestion.rubiogarciadental.com/api/health`. 6 tablas, 3 usuarios, 3 gabinetes, 15 tratamientos |
 | 2026-03-08 | **AI model selection** | Análisis completo de proveedores. Estrategia multi-modelo definitiva incorporada: Groq+Gemini+OpenRouter |
+| 2026-03-10 | **Historia clínica + odontograma** | Modelos Prisma: Patient, Appointment, ClinicalRecord, OdontogramEntry, Treatment. SQL migration 002. Backend clinical service+controller. Frontend: tabs Datos/Historia en PatientDetail, odontograma FDI 32 dientes interactivo, timeline entradas médicas con CRUD. Seed 24 tratamientos. Build 0 errores. |
 
 ---
 
@@ -235,6 +235,27 @@ frontend/
 │           ├── ClinicaPage.tsx          # ⭐ 6 widgets dashboard
 │           └── ClinicaPage.css
 ```
+
+---
+
+---
+
+### Sesión 2026-03-09 — Autenticación JWT completa
+
+- [x] **`UserRole` enum + modelo `User`** añadidos al schema Prisma (`backend/prisma/schema.prisma`)
+  - Campos: `id` (UUID), `email` (unique), `password` (bcrypt), `name`, `role`, `avatar`, `specialty`, `active`, `lastLogin`, `createdAt`, `updatedAt`
+  - Tabla: `users`
+- [x] **`prisma generate`** ejecutado — cliente Prisma actualizado con los nuevos tipos
+- [x] **Migración SQL** creada: `backend/prisma/migrations/001_create_users_table.sql` (para ejecutar en VPS)
+- [x] **Seed de usuarios** creado: `backend/prisma/seed_users.ts` (admin + doctor + recepción)
+- [x] **`authService.ts`** (frontend) — llamadas a `/api/auth/*`, gestión de tokens en localStorage
+- [x] **`AuthContext.tsx`** (frontend) — React context con `user`, `loading`, `login`, `logout`
+- [x] **`Login.tsx`** actualizado — conectado a la API real (eliminada simulación)
+- [x] **`App.tsx`** actualizado — rutas protegidas con `ProtectedRoutes` + `LoginRoute`
+- [x] **`Layout.tsx`** actualizado — avatar e inicial del usuario real, botón logout funcional
+- [x] **`.env.local`** limpiado — eliminadas referencias a Supabase (descartado), conservadas Romexis, Gmail, Evolution API, Chatwoot, Groq
+- [x] **`tsconfig.json`** — excluidos archivos duplicados (`App 2.tsx`, `main 2.tsx`)
+- [x] **0 errores TypeScript** — build limpio verificado
 
 ---
 

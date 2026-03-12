@@ -20,11 +20,25 @@ const envSchema = z.object({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     CORS_ORIGIN: z.string().default('http://localhost:5173'),
 
-    // IA
-    GEMINI_API_KEY: z.string().optional(),
+    // IA — Proveedores
+    GEMINI_API_KEY:     z.string().optional(),
+    GROQ_API_KEY:       z.string().optional(),
+    OPENROUTER_API_KEY: z.string().optional(),
+    DEEPSEEK_API_KEY:   z.string().optional(),
 
     // Storage
     UPLOAD_DIR: z.string().default('./uploads'),
+
+    // Evolution API (WhatsApp)
+    EVOLUTION_API_URL:   z.string().url().optional(),
+    EVOLUTION_API_KEY:   z.string().optional(),
+    EVOLUTION_INSTANCE:  z.string().optional(),
+
+    // Chatwoot
+    CHATWOOT_URL:        z.string().url().optional(),
+    CHATWOOT_TOKEN:      z.string().optional(),
+    CHATWOOT_ACCOUNT_ID: z.coerce.number().optional(),
+    CHATWOOT_INBOX_ID:   z.coerce.number().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);
