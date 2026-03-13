@@ -1,0 +1,31 @@
+# ─── SmileStudio Docker Compose (Development Override) ───
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+      target: development
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../backend/src:/app/src  # Hot reload
+      - ../backend/prisma:/app/prisma
+    ports:
+      - "3000:3000"  # Expose for direct access in dev
+      - "5555:5555"  # Prisma Studio
+    command: npx tsx watch src/server.ts
+
+  postgres:
+    ports:
+      - "5432:5432"  # Expose for local tools (pgAdmin, etc.)
+
+  redis:
+    ports:
+      - "6379:6379"  # Expose for local access
+
+  # No nginx needed in dev — access backend directly
+  nginx:
+    profiles:
+      - production-only

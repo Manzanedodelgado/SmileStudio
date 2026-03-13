@@ -19,6 +19,7 @@ import communicationRoutes from './modules/communication/communication.routes.js
 import aiRoutes from './modules/ai/ai.routes.js';
 import imagingRoutes from './modules/imaging/imaging.routes.js';
 import adminRoutes from './modules/admin/admin.routes.js';
+import inventoryRoutes from './modules/inventory/inventory.routes.js';
 
 // ─── App Setup ──────────────────────────────────────────
 const app = express();
@@ -68,6 +69,7 @@ app.use('/api/communication', communicationRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/imaging', imagingRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 // ─── Error Handling ─────────────────────────────────────
 app.use(notFoundHandler);

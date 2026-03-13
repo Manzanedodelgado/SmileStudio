@@ -1,0 +1,86 @@
+# ─── SmileStudio Docker Compose (VPS Production) ─────────
+# Adapted for VPS with existing EasyPanel/Traefik
+# No Nginx — Traefik handles reverse proxy + SSL
+# No host ports for DB/Redis — internal network only
+
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: smilestudio-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgresql://smilestudio:${DB_PASSWORD}@postgres:5432/smilestudio?schema=public
+      - REDIS_URL=redis://redis:6379
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - uploads:/app/uploads
+    ports:
+      - "127.0.0.1:3100:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.smilestudio-api.rule=Host(`gestion.rubiogarciadental.com`)"
+      - "traefik.http.routers.smilestudio-api.entrypoints=https"
+      - "traefik.http.routers.smilestudio-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.smilestudio-api-http.rule=Host(`gestion.rubiogarciadental.com`)"
+      - "traefik.http.routers.smilestudio-api-http.entrypoints=http"
+      - "traefik.http.services.smilestudio-api.loadbalancer.server.port=3000"
+      - "traefik.docker.network=easypanel"
+    networks:
+      - smilestudio
+      - easypanel
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: smilestudio-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: smilestudio
+      POSTGRES_USER: smilestudio
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U smilestudio" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - smilestudio
+
+  redis:
+    image: redis:7-alpine
+    container_name: smilestudio-redis
+    restart: unless-stopped
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - smilestudio
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:
+
+
+networks:
+  smilestudio:
+    driver: bridge
+  easypanel:
+    external: true

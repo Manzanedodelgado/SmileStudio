@@ -1,0 +1,1168 @@
+4:33:40 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:33:40 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+4:33:40 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:33:40 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+4:34:10 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:34:10 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+4:34:10 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:34:10 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+4:34:23 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (109:8)
+
+  107 |             )}
+  108 |         </div>
+> 109 |         </div >
+      |         ^
+  110 |     );
+  111 | }
+  112 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx:109:8
+  107 |              )}
+  108 |          </div>
+  109 |          </div >
+      |          ^
+  110 |      );
+  111 |  }
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.jsxParseElementAt (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4742:18)
+      at TypeScriptParserMixin.jsxParseElement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:39
+      at TypeScriptParserMixin.tryParse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12493:17)
+      at TypeScriptParse4:34:23 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (109:8)
+
+  107 |             )}
+  108 |         </div>
+> 109 |         </div >
+      |         ^
+  110 |     );
+  111 | }
+  112 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx:109:8
+  107 |              )}
+  108 |          </div>
+  109 |          </div >
+      |          ^
+  110 |      );
+  111 |  }
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.jsxParseElementAt (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4742:18)
+      at TypeScriptParserMixin.jsxParseElement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:39
+      at TypeScriptParserMixin.tryParse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/juanantoniomanzanedrMixin.parseParenAndDistinguishExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13444:10)
+4:34:23 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (109:8)
+
+  107 |             )}
+  108 |         </div>
+> 109 |         </div >
+      |         ^
+  110 |     );
+  111 | }
+  112 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx:109:8
+  107 |              )}
+  108 |          </div>
+  109 |          </div >
+      |          ^
+  110 |      );
+  111 |  }
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.jsxParseElementAt (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4742:18)
+      at TypeScriptParserMixin.jsxParseElement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at /Users/juanantoniomanzanodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13444:10)
+4:34:23 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (109:8)
+
+  107 |             )}
+  108 |         </div>
+> 109 |         </div >
+      |         ^
+  110 |     );
+  111 | }
+  112 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/pages/Inventario/InventarioPage.tsx:109:8
+  107 |              )}
+  108 |          </div>
+  109 |          </div >
+      |          ^
+  110 |      );
+  111 |  }
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.jsxParseElementAt (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4742:18)
+      at TypeScriptParserMixin.jsxParseElement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:39
+      at TypeScriptParserMixin.tryParse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13142:28)
+edodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:39
+      at TypeScriptParserMixin.tryParse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9775:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13444:10)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13444:10)
+4:44:08 AM [vite] (client) Pre-transform error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+4:44:08 AM [vite] (client) Pre-transform error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+4:44:08 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:44:08 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+4:45:46 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:45:46 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+4:45:56 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+  4:45:56 AM [vite] Internal server error: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx: Unexpected token (278:4)
+
+  276 |     );
+  277 | }
+> 278 |     );
+      |     ^
+  279 | }
+  280 |
+  Plugin: vite:react-babel
+  File: /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/src/components/layout/Layout.tsx:278:4
+  276 |      );
+  277 |  }
+  278 |      );
+      |      ^
+  279 |  }
+  280 |  
+      at constructor (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+    at TypeScriptParserMixin.parseModuleItem (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:261:32)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:189:28
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:113:33
+      at step (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:287:14)
+      at /Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/juanantoniomanzanedodelgado/Documents/Claudecode/SmileStudio/frontend/node_modules/gensync/index.js:223:11)

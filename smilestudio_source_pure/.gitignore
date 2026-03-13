@@ -1,0 +1,80 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ─── Archivos grandes / migración (>100 MB en conjunto) ───────────────────────
+# Scripts de migración Python
+*.py
+extract_*.py
+bulk_*.py
+migrate_*.py
+generate_*.py
+filtrar_*.py
+parter_*.py
+extraer_*.py
+aislar_*.py
+crear_*.py
+fix_*.py
+
+# Datos exportados y CSVs de GELITE
+data/
+exports/
+csvs/
+*.csv
+GELITE_*/
+raw_data/
+
+# SQL de setup / migración (NO los de la app)
+fix_*.sql
+migrate_*.sql
+bulk_*.sql
+create_*.sql
+actualizar_*.sql
+crear_*.sql
+test_*.sql
+
+# Backups y dumps
+*.bak
+*.dump
+*.backup
+*.sql.gz
+
+
+# Archivos de debug / test puntual
+test_*.py
+test_*.ts
+check_*.py
+
+# ─── Archivos de datos grandes y herramientas legacy ─────────────────────────
+# Directorio de herramientas de migración (NO es parte de la app)
+_legacy_tools/
+
+# Archivos .md de datos exportados de GELITE (pueden pesar 50-200MB)
+DATOS_*.md
+HISTORIAL_*.md
+LISTADO_*.md
+DIAGRAMA_*.md
+ESTRUCTURA_*.md
+MAPPING_*.md
+preview_*.html

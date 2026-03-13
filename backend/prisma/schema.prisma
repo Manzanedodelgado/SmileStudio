@@ -3655,3 +3655,52 @@ model ConversationHistory {
   @@index([expiresAt])
   @@map("conversation_history")
 }
+
+// ─── Inventario ───────────────────────────────────────────────────────────────
+
+model Product {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  sku         String   @unique
+  category    String   @default("Desechable")
+  minReorder  Int      @default(10) @map("min_reorder")
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  lots      Lot[]
+  movements StockMovement[]
+
+  @@map("products")
+}
+
+model Lot {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  productId   String    @map("product_id") @db.Uuid
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  lotNumber   String    @map("lot_number")
+  expiryDate  DateTime? @map("expiry_date") @db.Timestamptz
+  quantity    Int       @default(0)
+  location    String    @default("Almacén Central")
+  status      String    @default("OK")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([productId])
+  @@map("lots")
+}
+
+model StockMovement {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  productId String   @map("product_id") @db.Uuid
+  product   Product  @relation(fields: [productId], references: [id])
+  lotId     String?  @map("lot_id") @db.Uuid
+  type      String   // 'in' | 'out' | 'adjustment'
+  quantity  Int
+  reason    String?
+  userId    String?  @map("user_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([productId])
+  @@index([createdAt])
+  @@map("stock_movements")
+}
